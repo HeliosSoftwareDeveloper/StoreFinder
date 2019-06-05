@@ -3,7 +3,6 @@ package com.heliossoftwaredeveloper.storefinder
 
 import com.heliossoftwaredeveloper.storefinder.Store.Model.Merchant
 import io.reactivex.Observable
-import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -16,7 +15,7 @@ import retrofit2.http.GET
  */
 
 interface GetDataService {
-    @GET("/HeliosSoftwareDeveloper/storagefiles/raw/e610b1ca5682577e6e3e7f0825fa41d85fabebae/storeFinder/list_merchant.json")
+    @GET("/HeliosSoftwareDeveloper/storagefiles/raw/2aa7e1e43805ae4bc1e087db33092f9bc2dcc303/storeFinder/list_merchant.json")
     fun getAllMerchant(): Observable<List<Merchant>>
 
     companion object {

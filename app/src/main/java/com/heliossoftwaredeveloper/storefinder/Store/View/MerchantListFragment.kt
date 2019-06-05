@@ -5,10 +5,14 @@ import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+
+import kotlinx.android.synthetic.main.fragment_merchant_list.*
 
 import com.heliossoftwaredeveloper.storefinder.R
 import com.heliossoftwaredeveloper.storefinder.Store.Model.Merchant
@@ -27,7 +31,6 @@ class MerchantListFragment : Fragment(), MerchantListView {
     private var mListener: OnMerchantListFragmentListener? = null
     private lateinit var merchantPresenter : MerchantListPresenter
     private lateinit var merchantListAdapter : MerchantListAdapter
-    private lateinit var recycleViewMerchants : RecyclerView
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
@@ -45,12 +48,28 @@ class MerchantListFragment : Fragment(), MerchantListView {
 
         merchantPresenter = MerchantListPresenterImpl(this)
 
-        recycleViewMerchants = view.findViewById(R.id.recycleViewMerchants)
-        recycleViewMerchants.layoutManager = LinearLayoutManager(activity)
 
         merchantPresenter.getMerchantList()
 
         return view
+    }
+
+    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        recycleViewMerchants.layoutManager = LinearLayoutManager(activity)
+
+        etSearchBox.addTextChangedListener(object : TextWatcher {
+
+            override fun afterTextChanged(s: Editable) {}
+
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                merchantListAdapter.filter.filter(s)
+            }
+        })
     }
 
     override fun onDetach() {

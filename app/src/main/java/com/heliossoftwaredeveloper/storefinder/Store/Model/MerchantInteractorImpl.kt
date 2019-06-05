@@ -1,6 +1,5 @@
 package com.heliossoftwaredeveloper.storefinder.Store.Model
 
-import android.util.Log
 import com.heliossoftwaredeveloper.storefinder.GetDataService
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
