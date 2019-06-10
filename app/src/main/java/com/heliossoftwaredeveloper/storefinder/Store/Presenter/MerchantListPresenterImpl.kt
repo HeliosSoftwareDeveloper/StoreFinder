@@ -1,17 +1,23 @@
+/* (c) Helios Software Developer. All rights reserved. */
 package com.heliossoftwaredeveloper.storefinder.Store.Presenter
 
 import com.heliossoftwaredeveloper.storefinder.Store.Model.Merchant
-import com.heliossoftwaredeveloper.storefinder.Store.Model.MerchantInteractor
-import com.heliossoftwaredeveloper.storefinder.Store.Model.MerchantInteractorImpl
+import com.heliossoftwaredeveloper.storefinder.Store.Model.Interactor.MerchantInteractor
+import com.heliossoftwaredeveloper.storefinder.Store.Model.Interactor.MerchantInteractorImpl
+import com.heliossoftwaredeveloper.storefinder.Store.Model.MerchantListItem
 import com.heliossoftwaredeveloper.storefinder.Store.View.MerchantListView
 
 /**
- * Created by HELIOS.SOFTWARE.DEVELOPER on 06/06/2019.
+ * Created by Ruel N. Grajo on 06/06/2019.
+ *
+ * Presenter class for MerchantListView
  */
+
 class MerchantListPresenterImpl(merchantListView : MerchantListView)  : MerchantListPresenter{
 
     val mMerchantListView = merchantListView
-    val merchantInteractor : MerchantInteractor =  MerchantInteractorImpl()
+    val merchantInteractor : MerchantInteractor = MerchantInteractorImpl()
+    var cacheMerchantList = ArrayList<MerchantListItem>()
 
     override fun getMerchantList() {
         if (mMerchantListView == null) {
@@ -21,10 +27,12 @@ class MerchantListPresenterImpl(merchantListView : MerchantListView)  : Merchant
         mMerchantListView.updateLoaderVisibility(true)
 
         merchantInteractor.getMerchantList(object : MerchantInteractor.GetMerchantListListener{
-            override fun onGetMerchantListSuccess(listMerchant: List<Merchant>) {
+            override fun onGetMerchantListSuccess(listMerchantItems: List<MerchantListItem>) {
                 if (mMerchantListView != null) {
+                    cacheMerchantList.clear()
+                    cacheMerchantList.addAll(listMerchantItems)
                     mMerchantListView.updateLoaderVisibility(false)
-                    mMerchantListView.onUpdateMerchantList(listMerchant)
+                    mMerchantListView.onUpdateMerchantList(cacheMerchantList)
                 }
             }
 
@@ -36,9 +44,17 @@ class MerchantListPresenterImpl(merchantListView : MerchantListView)  : Merchant
         })
     }
 
+    override fun getCacheMerchantList(): List<MerchantListItem> {
+        return cacheMerchantList
+    }
+
     override fun onDestroy() {
         if (mMerchantListView == null) {
             return
+        }
+
+        if (merchantInteractor != null) {
+            merchantInteractor.onDestroy()
         }
     }
 }

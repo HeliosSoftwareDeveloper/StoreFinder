@@ -5,9 +5,6 @@ import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
-import android.text.Editable
-import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,6 +16,9 @@ import com.heliossoftwaredeveloper.storefinder.Store.Model.Merchant
 import com.heliossoftwaredeveloper.storefinder.Store.Presenter.MerchantListPresenter
 import com.heliossoftwaredeveloper.storefinder.Store.Presenter.MerchantListPresenterImpl
 import com.heliossoftwaredeveloper.storefinder.Store.View.Adapter.MerchantListAdapter
+import android.support.v4.widget.SwipeRefreshLayout
+import android.support.v7.widget.SearchView
+import com.heliossoftwaredeveloper.storefinder.Store.Model.MerchantListItem
 
 /**
  * Created by Ruel N. Grajo on 06/06/2019.
@@ -36,21 +36,12 @@ class MerchantListFragment : Fragment(), MerchantListView {
         super.onAttach(context)
         if (context is OnMerchantListFragmentListener) {
             mListener = context
-        } else {
-            throw RuntimeException(context!!.toString() + " must implement OnFragmentInteractionListener")
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view =  inflater.inflate(R.layout.fragment_merchant_list, container, false)
-
         merchantPresenter = MerchantListPresenterImpl(this)
-
-
-        merchantPresenter.getMerchantList()
-
         return view
     }
 
@@ -58,18 +49,28 @@ class MerchantListFragment : Fragment(), MerchantListView {
         super.onViewCreated(view, savedInstanceState)
 
         recycleViewMerchants.layoutManager = LinearLayoutManager(activity)
+        recycleViewMerchants.addItemDecoration(VerticalSpaceItemDecoration(resources.getDimension(R.dimen.margin_large).toInt()))
 
-        etSearchBox.addTextChangedListener(object : TextWatcher {
+        merchantListAdapter = MerchantListAdapter(merchantPresenter.getCacheMerchantList())
+        recycleViewMerchants.adapter = merchantListAdapter
 
-            override fun afterTextChanged(s: Editable) {}
+        pullToRefreshLayout.setOnRefreshListener(SwipeRefreshLayout.OnRefreshListener {
+            merchantPresenter.getMerchantList()
+        })
 
-            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
+        etSearchBox.queryHint = resources.getString(R.string.label_search_merchant)
+        etSearchBox.setIconifiedByDefault(false)
+        etSearchBox.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
             }
-
-            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                merchantListAdapter.filter.filter(s)
+            override fun onQueryTextChange(newText: String?): Boolean {
+                merchantListAdapter.filter.filter(newText)
+                return true
             }
         })
+
+        merchantPresenter.getMerchantList()
     }
 
     override fun onDetach() {
@@ -77,19 +78,23 @@ class MerchantListFragment : Fragment(), MerchantListView {
         mListener = null
     }
 
-    override fun onUpdateMerchantList(merchantList: List<Merchant>) {
-        merchantListAdapter = MerchantListAdapter(merchantList)
-        recycleViewMerchants.adapter = merchantListAdapter
+    override fun onDestroy() {
+        super.onDestroy()
+        merchantPresenter.onDestroy()
+    }
+
+    override fun onUpdateMerchantList(merchantListItem: List<MerchantListItem>) {
+        merchantListAdapter.updateList(merchantListItem)
     }
 
     override fun updateLoaderVisibility(isVisible: Boolean) {
+        pullToRefreshLayout.isRefreshing = isVisible
     }
 
     /**
      * Interface to handle callbacks
      * */
     interface OnMerchantListFragmentListener {
-        // TODO: Update argument type and name
         fun onMerchantClicked(merchant: Merchant)
     }
 }

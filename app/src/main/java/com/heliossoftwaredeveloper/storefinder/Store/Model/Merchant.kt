@@ -7,6 +7,7 @@ package com.heliossoftwaredeveloper.storefinder.Store.Model
  * Data class holder for merchant details
  */
 
-data class Merchant(val merchantID : Int, val merchantName : String, val merchantDetails : String, val merchantLocation : MerchantLocation) {
-    data class MerchantLocation(val latitude : Double, val longitude : Double)
+data class Merchant(val merchantID : Int, val merchantName : String, val merchantCategory : Int, val merchantWebsite : String,
+                    val merchantIcon: String, val merchantDetails : String, val merchantBranches : List<Branches>) {
+    data class Branches(val branchLocation : List<Double>, val branchName : String, val branchAddress : String, val branchStoreHours : String, val branchPhoneNumber : String)
 }

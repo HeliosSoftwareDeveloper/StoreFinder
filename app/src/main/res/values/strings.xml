@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">StoreFinder</string>
 
+    <string name="label_search_merchant">Search Merchant</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
