@@ -1,7 +1,6 @@
 /* (c) Helios Software Developer. All rights reserved. */
 package com.heliossoftwaredeveloper.storefinder.Store.Presenter
 
-import com.heliossoftwaredeveloper.storefinder.Store.Model.Merchant
 import com.heliossoftwaredeveloper.storefinder.Store.Model.Interactor.MerchantInteractor
 import com.heliossoftwaredeveloper.storefinder.Store.Model.Interactor.MerchantInteractorImpl
 import com.heliossoftwaredeveloper.storefinder.Store.Model.MerchantListItem

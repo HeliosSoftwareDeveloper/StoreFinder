@@ -10,11 +10,23 @@ import com.heliossoftwaredeveloper.storefinder.Store.Model.MerchantListItem
  */
 interface  MerchantInteractor {
 
+    /**
+     * Interface callback for getMerchantList from services
+     * */
     interface GetMerchantListListener {
         fun onGetMerchantListSuccess(listMerchantItems: List<MerchantListItem>)
         fun onGetMerchantListError(message : String?)
     }
 
+    /**
+     * Interface method to call getMerchantList Request
+     *
+     * @param getMerchantListListener callback/listener
+     * */
     fun getMerchantList(getMerchantListListener : GetMerchantListListener)
+
+    /**
+     * Interface method to cancel any ongoing request onViewDestroy
+     * */
     fun onDestroy()
 }

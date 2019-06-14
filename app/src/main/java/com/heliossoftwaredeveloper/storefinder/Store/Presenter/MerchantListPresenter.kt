@@ -10,7 +10,21 @@ import com.heliossoftwaredeveloper.storefinder.Store.Model.MerchantListItem
  */
 
 interface MerchantListPresenter {
+
+    /**
+     * Interface method to call getMerchantList on the interactor
+     * */
     fun getMerchantList()
+
+    /**
+     * Interface method to get merchantList from the cache variable
+     *
+     * @return List<MerchantListItem> the cached merchantList from variable
+     * */
     fun getCacheMerchantList() : List<MerchantListItem>
+
+    /**
+     * Interface method to call onDestroy on interactor and cancel any pending task
+     * */
     fun onDestroy()
 }

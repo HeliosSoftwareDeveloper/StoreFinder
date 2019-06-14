@@ -1,5 +1,5 @@
 /* (c) Helios Software Developer. All rights reserved. */
-package com.heliossoftwaredeveloper.storefinder.Store.View
+package com.heliossoftwaredeveloper.storefinder.Store.View.Fragment
 
 import android.content.Context
 import android.os.Bundle
@@ -18,7 +18,9 @@ import com.heliossoftwaredeveloper.storefinder.Store.Presenter.MerchantListPrese
 import com.heliossoftwaredeveloper.storefinder.Store.View.Adapter.MerchantListAdapter
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.SearchView
+import com.heliossoftwaredeveloper.storefinder.Utils.DividerSpaceItemDecoration
 import com.heliossoftwaredeveloper.storefinder.Store.Model.MerchantListItem
+import com.heliossoftwaredeveloper.storefinder.Store.View.MerchantListView
 
 /**
  * Created by Ruel N. Grajo on 06/06/2019.
@@ -26,7 +28,7 @@ import com.heliossoftwaredeveloper.storefinder.Store.Model.MerchantListItem
  * Fragment class that display Merchant List.
  */
 
-class MerchantListFragment : Fragment(), MerchantListView {
+class MerchantListFragment : Fragment(), MerchantListView, MerchantListAdapter.MerchantListAdapterListener {
 
     private var mListener: OnMerchantListFragmentListener? = null
     private lateinit var merchantPresenter : MerchantListPresenter
@@ -49,9 +51,9 @@ class MerchantListFragment : Fragment(), MerchantListView {
         super.onViewCreated(view, savedInstanceState)
 
         recycleViewMerchants.layoutManager = LinearLayoutManager(activity)
-        recycleViewMerchants.addItemDecoration(VerticalSpaceItemDecoration(resources.getDimension(R.dimen.margin_large).toInt()))
+        recycleViewMerchants.addItemDecoration(DividerSpaceItemDecoration(resources.getDimension(R.dimen.margin_small).toInt(), false))
 
-        merchantListAdapter = MerchantListAdapter(merchantPresenter.getCacheMerchantList())
+        merchantListAdapter = MerchantListAdapter(merchantPresenter.getCacheMerchantList(), this)
         recycleViewMerchants.adapter = merchantListAdapter
 
         pullToRefreshLayout.setOnRefreshListener(SwipeRefreshLayout.OnRefreshListener {
@@ -89,6 +91,10 @@ class MerchantListFragment : Fragment(), MerchantListView {
 
     override fun updateLoaderVisibility(isVisible: Boolean) {
         pullToRefreshLayout.isRefreshing = isVisible
+    }
+
+    override fun onMerchantItemListClicked(merchant: Merchant) {
+        mListener?.onMerchantClicked(merchant)
     }
 
     /**

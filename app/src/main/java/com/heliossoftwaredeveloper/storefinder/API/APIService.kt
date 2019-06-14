@@ -1,6 +1,7 @@
 /* (c) Helios Software Developer. All rights reserved. */
 package com.heliossoftwaredeveloper.storefinder.API
 
+import com.heliossoftwaredeveloper.storefinder.Store.Model.Merchant
 import io.reactivex.Observable
 import retrofit2.http.GET
 
@@ -12,6 +13,6 @@ import retrofit2.http.GET
 
 interface APIService {
 
-    @GET("/HeliosSoftwareDeveloper/storagefiles/raw/ededcd6a595c5e900e30f78be3e2bce512323846/storeFinder/list_merchant.json")
+    @GET(Merchant.REQUEST_GET_MERCHANTS)
     fun getAllMerchant(): Observable<GetMerchantResponse>
 }

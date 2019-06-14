@@ -3,8 +3,6 @@ package com.heliossoftwaredeveloper.storefinder.Store.Model.Interactor
 
 import com.heliossoftwaredeveloper.storefinder.API.GetMerchantResponse
 import com.heliossoftwaredeveloper.storefinder.API.RetrofitClientInstance
-import com.heliossoftwaredeveloper.storefinder.Store.Model.Merchant
-import com.heliossoftwaredeveloper.storefinder.Store.Model.MerchantCategory
 import com.heliossoftwaredeveloper.storefinder.Store.Model.MerchantListItem
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable

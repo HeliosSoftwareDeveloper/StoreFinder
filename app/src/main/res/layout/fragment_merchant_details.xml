@@ -1,13 +1,87 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context="com.heliossoftwaredeveloper.storefinder.Store.View.MerchantDetailsFragment">
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                                             xmlns:tools="http://schemas.android.com/tools"
+                                             android:layout_width="match_parent"
+                                             android:layout_height="match_parent"
+                                             tools:context="com.heliossoftwaredeveloper.storefinder.Store.View.Fragment.MerchantDetailsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <fragment
+        android:id="@+id/fragmentMap"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="@dimen/empty_size"
+        android:layout_height="@dimen/empty_size"
+        card_view:layout_constraintBottom_toBottomOf="parent"
+        card_view:layout_constraintEnd_toEndOf="parent"
+        card_view:layout_constraintStart_toStartOf="parent"
+        card_view:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment"/>
+        android:layout_height="wrap_content"
+        android:background="@color/colorLightGray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
 
-</FrameLayout>
+        <TextView
+            android:paddingLeft="@dimen/margin_small"
+            android:paddingRight="@dimen/margin_small"
+            android:paddingTop="@dimen/margin_small"
+            android:id="@+id/txtMerchantName"
+            android:layout_width="@dimen/empty_size"
+            android:layout_height="wrap_content"
+            android:background="@color/colorHookerGreen"
+            android:clickable="false"
+            android:textColor="@color/colorLightGray"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:paddingLeft="@dimen/margin_small"
+            android:paddingRight="@dimen/margin_small"
+            android:id="@+id/txtMerchantDetails"
+            android:layout_width="@dimen/empty_size"
+            android:background="@color/colorHookerGreen"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:ellipsize="end"
+            android:textColor="@color/colorLightGray"
+            android:textStyle="italic"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/txtMerchantName"
+            app:layout_constraintTop_toBottomOf="@+id/txtMerchantName"/>
+
+        <TextView
+            android:paddingLeft="@dimen/margin_small"
+            android:paddingRight="@dimen/margin_small"
+            android:paddingBottom="@dimen/margin_small"
+            android:id="@+id/txtMerchantWebsite"
+            android:layout_width="@dimen/empty_size"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:background="@color/colorHookerGreen"
+            android:ellipsize="end"
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle="italic"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/txtMerchantDetails"
+            app:layout_constraintTop_toBottomOf="@+id/txtMerchantDetails"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycleViewMerchantBranches"
+            android:layout_width="@dimen/empty_size"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/margin_small"
+            android:requiresFadingEdge="horizontal|vertical"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/txtMerchantWebsite"
+            app:layout_constraintTop_toBottomOf="@+id/txtMerchantWebsite"/>
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.constraint.ConstraintLayout>
