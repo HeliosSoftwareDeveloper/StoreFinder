@@ -63,7 +63,7 @@ class MerchantDetailsFragment : Fragment(), OnMapReadyCallback, MerchantBranches
 
         for (merchantBranches in selectedMerchant!!.merchantBranches) {
             val brachLocation = merchantBranches.branchLocation
-            val merchantLocation = LatLng(brachLocation.first(), brachLocation.get(brachLocation.lastIndex))
+            merchantLocation = LatLng(brachLocation.first(), brachLocation.get(brachLocation.lastIndex))
             mMap.addMarker(MarkerOptions().position(merchantLocation).title(selectedMerchant!!.merchantName))
         }
 
