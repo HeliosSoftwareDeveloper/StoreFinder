@@ -1,6 +1,7 @@
 /* (c) Helios Software Developer. All rights reserved. */
 package com.heliossoftwaredeveloper.storefinder.Store.Presenter
 
+import com.heliossoftwaredeveloper.storefinder.API.RetrofitClientInstance
 import com.heliossoftwaredeveloper.storefinder.Store.Model.Interactor.MerchantInteractor
 import com.heliossoftwaredeveloper.storefinder.Store.Model.Interactor.MerchantInteractorImpl
 import com.heliossoftwaredeveloper.storefinder.Store.Model.MerchantListItem
@@ -15,7 +16,12 @@ import com.heliossoftwaredeveloper.storefinder.Store.View.MerchantListView
 class MerchantListPresenterImpl(merchantListView : MerchantListView)  : MerchantListPresenter{
 
     val mMerchantListView = merchantListView
-    val merchantInteractor : MerchantInteractor = MerchantInteractorImpl()
+
+    val apiService by lazy {
+        RetrofitClientInstance.create()
+    }
+    val merchantInteractor : MerchantInteractor = MerchantInteractorImpl(apiService)
+
     var cacheMerchantList = ArrayList<MerchantListItem>()
 
     override fun getMerchantList() {

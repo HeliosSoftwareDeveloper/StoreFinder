@@ -1,8 +1,8 @@
 /* (c) Helios Software Developer. All rights reserved. */
 package com.heliossoftwaredeveloper.storefinder.Store.Model.Interactor
 
+import com.heliossoftwaredeveloper.storefinder.API.APIService
 import com.heliossoftwaredeveloper.storefinder.API.GetMerchantResponse
-import com.heliossoftwaredeveloper.storefinder.API.RetrofitClientInstance
 import com.heliossoftwaredeveloper.storefinder.Store.Model.MerchantListItem
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -13,13 +13,9 @@ import io.reactivex.schedulers.Schedulers
  *
  * Interactor class to handle transactions related to merchant
  */
-class MerchantInteractorImpl : MerchantInteractor {
+class MerchantInteractorImpl(private val apiService : APIService) : MerchantInteractor {
 
     var disposable: Disposable? = null
-
-    val apiService by lazy {
-        RetrofitClientInstance.create()
-    }
 
     override fun getMerchantList(getMerchantListListener: MerchantInteractor.GetMerchantListListener) {
         disposable = apiService.getAllMerchant()

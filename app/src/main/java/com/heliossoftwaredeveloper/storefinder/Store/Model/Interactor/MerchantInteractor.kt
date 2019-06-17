@@ -8,7 +8,7 @@ import com.heliossoftwaredeveloper.storefinder.Store.Model.MerchantListItem
  *
  * Interactor class to handle transactions related to merchant
  */
-interface  MerchantInteractor {
+interface MerchantInteractor {
 
     /**
      * Interface callback for getMerchantList from services
