@@ -61,7 +61,7 @@ class MerchantDetailsFragment : Fragment(), OnMapReadyCallback, MerchantBranches
 
         recycleViewMerchantBranches.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
         recycleViewMerchantBranches.addItemDecoration(DividerSpaceItemDecoration(resources.getDimension(R.dimen.margin_small).toInt(), true))
-        recycleViewMerchantBranches.adapter = MerchantBranchesAdapter(selectedMerchant?.merchantBranches!!, this)
+        recycleViewMerchantBranches.adapter = MerchantBranchesAdapter(selectedMerchant!!.merchantBranches, this)
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
@@ -87,7 +87,7 @@ class MerchantDetailsFragment : Fragment(), OnMapReadyCallback, MerchantBranches
     }
 
     companion object {
-        const val ARG_PARAM_MERCHANT = "argParamMerchant"
+        private const val ARG_PARAM_MERCHANT = "argParamMerchant"
 
         fun newInstance(merchant: Merchant): MerchantDetailsFragment {
             val fragment = MerchantDetailsFragment()
@@ -109,7 +109,7 @@ class MerchantDetailsFragment : Fragment(), OnMapReadyCallback, MerchantBranches
     override fun onMoveMapLocationTo(location: LatLng) {
         if (mMap != null) {
             mMap.moveCamera(CameraUpdateFactory.newLatLng(location))
-            mMap.animateCamera(CameraUpdateFactory.zoomTo(17.0f))
+            mMap.animateCamera(CameraUpdateFactory.zoomTo(Constants.MAP_ZOOM_LEVEL))
         }
     }
 }

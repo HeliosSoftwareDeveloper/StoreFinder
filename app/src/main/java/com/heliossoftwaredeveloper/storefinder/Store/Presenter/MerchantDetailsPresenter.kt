@@ -16,7 +16,6 @@ interface MerchantDetailsPresenter {
      * */
     fun getMerchantBranchMarkers(merchant: Merchant)
 
-
     /**
      * Interface method to get branch location
      * */

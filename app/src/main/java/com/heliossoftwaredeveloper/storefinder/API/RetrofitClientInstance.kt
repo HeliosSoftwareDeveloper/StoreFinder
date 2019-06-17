@@ -14,7 +14,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 class RetrofitClientInstance {
 
     companion object {
-        private val BASE_URL = "https://bitbucket.org/"
+        private const val BASE_URL = "https://bitbucket.org/"
         fun create(): APIService {
             val retrofit = Retrofit.Builder()
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
