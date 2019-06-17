@@ -20,7 +20,10 @@ import com.heliossoftwaredeveloper.storefinder.SharedComponents.DividerSpaceItem
 import com.heliossoftwaredeveloper.storefinder.R
 import com.heliossoftwaredeveloper.storefinder.SharedComponents.Constants
 import com.heliossoftwaredeveloper.storefinder.Store.Model.Merchant
+import com.heliossoftwaredeveloper.storefinder.Store.Presenter.MerchantDetailsPresenter
+import com.heliossoftwaredeveloper.storefinder.Store.Presenter.MerchantDetailsPresenterImpl
 import com.heliossoftwaredeveloper.storefinder.Store.View.Adapter.MerchantBranchesAdapter
+import com.heliossoftwaredeveloper.storefinder.Store.View.MerchantDetailsView
 import kotlinx.android.synthetic.main.fragment_merchant_details.*
 
 /**
@@ -29,16 +32,18 @@ import kotlinx.android.synthetic.main.fragment_merchant_details.*
  * Fragment class that display Merchant complete details.
  */
 
-class MerchantDetailsFragment : Fragment(), OnMapReadyCallback, MerchantBranchesAdapter.MerchantBranchesAdapterListener {
+class MerchantDetailsFragment : Fragment(), OnMapReadyCallback, MerchantBranchesAdapter.MerchantBranchesAdapterListener, MerchantDetailsView {
 
     private var selectedMerchant: Merchant? = null
     private lateinit var mMap: GoogleMap
+    private lateinit var merchantDetailsPresenter : MerchantDetailsPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (arguments != null) {
             selectedMerchant = arguments.getSerializable(ARG_PARAM_MERCHANT) as Merchant
         }
+        merchantDetailsPresenter = MerchantDetailsPresenterImpl(this)
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -78,17 +83,7 @@ class MerchantDetailsFragment : Fragment(), OnMapReadyCallback, MerchantBranches
             requestPermissions(arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), Constants.REQUEST_CODE_USER_LOCATION_PERMISSION)
         }
 
-        var merchantLocation : LatLng? = null //need to save the instance to move & zoom the map camera to the last branch of merchant.
-
-        for (merchantBranches in selectedMerchant!!.merchantBranches) {
-            val brachLocation = merchantBranches.branchLocation
-            merchantLocation = LatLng(brachLocation.first(), brachLocation.get(brachLocation.lastIndex))
-            mMap.addMarker(MarkerOptions().position(merchantLocation).title(selectedMerchant!!.merchantName))
-        }
-
-        if (merchantLocation != null) {
-            moveMapCameraTo(merchantLocation)
-        }
+        merchantDetailsPresenter.getMerchantBranchMarkers(selectedMerchant!!)
     }
 
     companion object {
@@ -104,18 +99,16 @@ class MerchantDetailsFragment : Fragment(), OnMapReadyCallback, MerchantBranches
     }
 
     override fun onMerchantBranchItemListClicked(merchantBranch: Merchant.Branches) {
-        val brachLocation = merchantBranch.branchLocation
-        moveMapCameraTo(LatLng(brachLocation.first(), brachLocation.get(brachLocation.lastIndex)))
+        merchantDetailsPresenter.getMerchantBranchLocation(merchantBranch)
     }
 
-    /**
-     * Method to move & zoom the map
-     *
-     * @param latLng location to zoom
-     * */
-    fun moveMapCameraTo(latLng: LatLng) {
+    override fun onAddMapMarker(markerOptions: MarkerOptions) {
+        mMap.addMarker(markerOptions)
+    }
+
+    override fun onMoveMapLocationTo(location: LatLng) {
         if (mMap != null) {
-            mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng))
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(location))
             mMap.animateCamera(CameraUpdateFactory.zoomTo(17.0f))
         }
     }
