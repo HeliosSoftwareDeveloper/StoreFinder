@@ -18,7 +18,7 @@ import com.heliossoftwaredeveloper.storefinder.Store.Presenter.MerchantListPrese
 import com.heliossoftwaredeveloper.storefinder.Store.View.Adapter.MerchantListAdapter
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.SearchView
-import com.heliossoftwaredeveloper.storefinder.Utils.DividerSpaceItemDecoration
+import com.heliossoftwaredeveloper.storefinder.SharedComponents.DividerSpaceItemDecoration
 import com.heliossoftwaredeveloper.storefinder.Store.Model.MerchantListItem
 import com.heliossoftwaredeveloper.storefinder.Store.View.MerchantListView
 

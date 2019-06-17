@@ -1,10 +1,14 @@
 /* (c) Helios Software Developer. All rights reserved. */
 package com.heliossoftwaredeveloper.storefinder
 
+import android.os.Build
 import android.os.Bundle
+import android.support.v4.app.ActivityCompat
 import com.heliossoftwaredeveloper.storefinder.Store.Model.Merchant
 import com.heliossoftwaredeveloper.storefinder.Store.View.Fragment.MerchantDetailsFragment
 import com.heliossoftwaredeveloper.storefinder.Store.View.Fragment.MerchantListFragment
+import com.heliossoftwaredeveloper.storefinder.SharedComponents.Constants
+import com.heliossoftwaredeveloper.storefinder.SharedComponents.ViewNavigator
 
 /**
  * Created by Ruel N. Grajo on 06/06/2019.
@@ -18,10 +22,23 @@ class MainActivity : ViewNavigator(), MerchantListFragment.OnMerchantListFragmen
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            ActivityCompat.requestPermissions(this, Constants.listUserRequiredPermission, Constants.REQUEST_CODE_USER_PERMISSION_ALL)
+        }
+
         nagivateTo(MerchantListFragment(), false)
     }
 
     override fun onMerchantClicked(merchant: Merchant) {
         nagivateTo(MerchantDetailsFragment.newInstance(merchant), true)
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
+            Constants.REQUEST_CODE_USER_LOCATION_PERMISSION -> {
+                //show message for future development
+            }
+        }
     }
 }

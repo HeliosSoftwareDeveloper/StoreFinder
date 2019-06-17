@@ -1,7 +1,9 @@
-package com.heliossoftwaredeveloper.storefinder
+/* (c) Helios Software Developer. All rights reserved. */
+package com.heliossoftwaredeveloper.storefinder.SharedComponents
 
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
+import com.heliossoftwaredeveloper.storefinder.R
 
 /**
  * Created by Ruel N. Grajo on 06/06/2019.

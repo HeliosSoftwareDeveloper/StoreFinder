@@ -1,8 +1,10 @@
 /* (c) Helios Software Developer. All rights reserved. */
 package com.heliossoftwaredeveloper.storefinder.Store.View.Fragment
 
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
@@ -13,9 +15,10 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import com.heliossoftwaredeveloper.storefinder.Utils.DividerSpaceItemDecoration
+import com.heliossoftwaredeveloper.storefinder.SharedComponents.DividerSpaceItemDecoration
 
 import com.heliossoftwaredeveloper.storefinder.R
+import com.heliossoftwaredeveloper.storefinder.SharedComponents.Constants
 import com.heliossoftwaredeveloper.storefinder.Store.Model.Merchant
 import com.heliossoftwaredeveloper.storefinder.Store.View.Adapter.MerchantBranchesAdapter
 import kotlinx.android.synthetic.main.fragment_merchant_details.*
@@ -56,8 +59,24 @@ class MerchantDetailsFragment : Fragment(), OnMapReadyCallback, MerchantBranches
         recycleViewMerchantBranches.adapter = MerchantBranchesAdapter(selectedMerchant?.merchantBranches!!, this)
     }
 
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        when (requestCode) {
+            Constants.REQUEST_CODE_USER_LOCATION_PERMISSION -> {
+                if (grantResults.isNotEmpty() && grantResults.first() == PackageManager.PERMISSION_GRANTED) {
+                    mMap.isMyLocationEnabled = true
+                }
+            }
+        }
+    }
+
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
+
+        if (ContextCompat.checkSelfPermission(activity, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            mMap.isMyLocationEnabled = true
+        } else {
+            requestPermissions(arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), Constants.REQUEST_CODE_USER_LOCATION_PERMISSION)
+        }
 
         var merchantLocation : LatLng? = null //need to save the instance to move & zoom the map camera to the last branch of merchant.
 

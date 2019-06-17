@@ -1,5 +1,5 @@
 /* (c) Helios Software Developer. All rights reserved. */
-package com.heliossoftwaredeveloper.storefinder.Utils
+package com.heliossoftwaredeveloper.storefinder.SharedComponents
 
 import android.graphics.Rect
 import android.support.v7.widget.RecyclerView
@@ -13,11 +13,11 @@ import android.view.View
 
 class DividerSpaceItemDecoration(private val spaceSize: Int, isHorizontal : Boolean) : RecyclerView.ItemDecoration() {
 
-    val mIsHorizontal = isHorizontal
+    private val mIsHorizontal = isHorizontal
 
     override fun getItemOffsets(outRect: Rect, view: View?, parent: RecyclerView, state: RecyclerView.State?) {
         super.getItemOffsets(outRect, view, parent, state)
-        if (parent.getChildAdapterPosition(view) != parent.getAdapter().getItemCount() - 1) {
+        if (parent.getChildAdapterPosition(view) != parent.adapter.itemCount - 1) {
             if (mIsHorizontal) {
                 outRect.right = spaceSize
             } else {
