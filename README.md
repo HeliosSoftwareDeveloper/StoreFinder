@@ -1,27 +1,28 @@
 # HeliosStoreFinder
-Sample Application to demonstrate MVP pattern with RxJava & Retrofit using Kotlin.
-<ul>
-  <li>Asynctask to handle network calls</li>
-  <li>HTTP Request Using HttpURLConnection</li>
-  <li>Image Downloader with Queueing functionality</li>
-  <li>JSON parsing</li>
-  <li>Base Activity Class</li>
-  <li>Passing Object/Data between Activities</li>
-  <li>Delivering Object/Data to a fragment using Interface Callback</li>
-</ul>
+Sample Application to demonstrate MVP pattern with RxJava & Retrofit using Kotlin. Below are the complete features of the application:
 
 <ul>
-  <li>Single-pane and Multi-pane Layouts</li>
+  <li>Retrofit with RxJava -> used to handle network calls using observable</li>
+  <li>Fresco (Facebook library) -> used to download images</li>
+  <li>Gson (Google Library) -> used to parse json response from the service</li>
+  <li>ViewNavigator -> Base Activity Class to handle the navigation between</li>
+  <li>Constants class -> used to store all const variables</li>
+  <li>Delivering Object/Data to a fragment using Interface Callback</li>
+  <li>DividerSpaceItemDecoration -> used to add spaces between items on recyclerview</li>
+  <li>GoogleMap implemenation on Fragment</li>
+  <li>Handle User-Permission-Request</li>
+  <li>Dimens.xml -> used to store all view sizes</li>
+  <li>colors.xml -> used to store all custom-colors that is needed by the application</li>
   <li>RecyclerView with SwipeRefreshLayout</li>
-  <li>Re-using Layouts with 'include'</li>
-  <li>CardView</li>
-  <li>Toolbar</li>
-  <li>AlertDialog</li>
-  <li>RatingBar</li>
+  <li>Horizontal RecyclerView -> used to display merchant branch locations</li>
+  <li>RecyclerView with Headerview -> used to display merchants by section with header</li>
+  <li>Implementing multiple viewholder on recyclerView adapter</li>
+  <li>ConstraintLayout (Android Support)</li>
+  <li>CardView (Android Support)</li>
+  <li>SearchView (Android Support)</li>
 </ul>
 
 <b>App Screenshots:</b>
 
-
-<b>Mobile (Orientation - Portrait):</b><br />
+<b>Mobile:</b><br />
 <img src="https://raw.githubusercontent.com/HeliosSoftwareDeveloper/StoreFinder/master/screenshots/view_list.png" width="30%" /> &nbsp;&nbsp; <img src="https://raw.githubusercontent.com/HeliosSoftwareDeveloper/StoreFinder/master/screenshots/view_details.png" width="30%" /><br /><br />
