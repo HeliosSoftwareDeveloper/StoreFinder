@@ -32,7 +32,7 @@ class MerchantDetailsPresenterTest : BaseMerchantTest(){
 
     @Test
     fun testValidMerchant() {
-        val validMockMerchant = validMerchantMockResponse()
+        val validMockMerchant = validMerchantMock()
         presenter.getMerchantBranchMarkers(validMockMerchant)
 
         val lastValidMerchantBranch = validMockMerchant.merchantBranches.last()

@@ -34,7 +34,7 @@ class MerchantInteractorTest : BaseMerchantTest(){
 
     @Test
     fun testValidGetMerchantList() {
-        Mockito.`when`(apiService.getAllMerchant()).thenReturn(Observable.just(validMerchantListMockResponse()))
+        Mockito.`when`(apiService.getAllMerchant()).thenReturn(Observable.just(validGetMerchantMockResponse()))
 
         interactor.getMerchantList(object : MerchantInteractor.GetMerchantListListener {
             override fun onGetMerchantListSuccess(listMerchantItems: List<MerchantListItem>) {
@@ -52,7 +52,7 @@ class MerchantInteractorTest : BaseMerchantTest(){
 
     @Test
     fun testEmptyGetMerchantList() {
-        Mockito.`when`(apiService.getAllMerchant()).thenReturn(Observable.just(emptyMerchantListMockResponse()))
+        Mockito.`when`(apiService.getAllMerchant()).thenReturn(Observable.just(emptyGetMerchantMockResponse()))
 
         interactor.getMerchantList(object : MerchantInteractor.GetMerchantListListener {
             override fun onGetMerchantListSuccess(listMerchantItems: List<MerchantListItem>) {
@@ -66,7 +66,7 @@ class MerchantInteractorTest : BaseMerchantTest(){
 
     @Test
     fun testInvalidGetMerchantList() {
-        Mockito.`when`(apiService.getAllMerchant()).thenReturn(Observable.just(invalidMerchantListMockResponse()))
+        Mockito.`when`(apiService.getAllMerchant()).thenReturn(Observable.just(invalidGetMerchantMockResponse()))
 
         interactor.getMerchantList(object : MerchantInteractor.GetMerchantListListener {
             override fun onGetMerchantListSuccess(listMerchantItems: List<MerchantListItem>) {

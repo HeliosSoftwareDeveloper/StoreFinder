@@ -13,16 +13,16 @@ import io.reactivex.schedulers.Schedulers
  *
  * Interactor class to handle transactions related to merchant
  */
-class MerchantInteractorImpl(private val apiService : APIService) : MerchantInteractor {
+class MerchantInteractorImpl(private val apiService : APIService? = null) : MerchantInteractor {
 
     private var disposable: Disposable? = null
     private val SERVICE_ERROR_MESSAGE = "An error occured. Please try again later."
 
     override fun getMerchantList(getMerchantListListener: MerchantInteractor.GetMerchantListListener) {
-        disposable = apiService.getAllMerchant()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
+        disposable = apiService?.getAllMerchant()
+                ?.subscribeOn(Schedulers.io())
+                ?.observeOn(AndroidSchedulers.mainThread())
+                ?.subscribe(
                         { result ->
                             getMerchantListListener.onGetMerchantListSuccess(groupMerchantByCategory(result))
                             onDestroy()

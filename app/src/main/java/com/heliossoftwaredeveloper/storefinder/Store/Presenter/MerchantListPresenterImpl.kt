@@ -19,8 +19,6 @@ class MerchantListPresenterImpl(merchantListView : MerchantListView, apiService 
 
     val merchantInteractor : MerchantInteractor = MerchantInteractorImpl(apiService)
 
-    var cacheMerchantList = ArrayList<MerchantListItem>()
-
     override fun getMerchantList() {
         if (mMerchantListView == null) {
             return
@@ -31,10 +29,8 @@ class MerchantListPresenterImpl(merchantListView : MerchantListView, apiService 
         merchantInteractor.getMerchantList(object : MerchantInteractor.GetMerchantListListener{
             override fun onGetMerchantListSuccess(listMerchantItems: List<MerchantListItem>) {
                 if (mMerchantListView != null) {
-                    cacheMerchantList.clear()
-                    cacheMerchantList.addAll(listMerchantItems)
                     mMerchantListView.updateLoaderVisibility(false)
-                    mMerchantListView.onUpdateMerchantList(cacheMerchantList)
+                    mMerchantListView.onUpdateMerchantList(listMerchantItems)
                 }
             }
 
@@ -47,17 +43,10 @@ class MerchantListPresenterImpl(merchantListView : MerchantListView, apiService 
         })
     }
 
-    override fun getCacheMerchantList(): List<MerchantListItem> {
-        return cacheMerchantList
-    }
-
     override fun onDestroy() {
         if (mMerchantListView == null) {
             return
         }
-
-        if (merchantInteractor != null) {
-            merchantInteractor.onDestroy()
-        }
+        merchantInteractor?.onDestroy()
     }
 }

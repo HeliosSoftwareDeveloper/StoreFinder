@@ -4,6 +4,7 @@ package com.heliossoftwaredeveloper.storefinder.Store
 import com.google.gson.Gson
 import com.heliossoftwaredeveloper.storefinder.API.GetMerchantResponse
 import com.heliossoftwaredeveloper.storefinder.Store.Model.Merchant
+import com.heliossoftwaredeveloper.storefinder.Store.Model.MerchantListItem
 import java.io.BufferedReader
 import java.io.FileReader
 
@@ -24,7 +25,7 @@ open class BaseMerchantTest {
      *
      * @return Merchant valid mock merchant
      * */
-    fun validMerchantMockResponse() : Merchant {
+    fun validMerchantMock() : Merchant {
         return loadMockDataFromResource("mock_data_single_merchant.json", Merchant::class.java) as Merchant
     }
 
@@ -33,8 +34,8 @@ open class BaseMerchantTest {
      *
      * @return GetMerchantResponse valid mock merchant response
      * */
-    fun validMerchantListMockResponse() : GetMerchantResponse {
-        return loadMockDataFromResource("mock_data_valid_list_merchant.json", GetMerchantResponse::class.java) as GetMerchantResponse
+    fun validGetMerchantMockResponse() : GetMerchantResponse {
+        return loadMockDataFromResource("mock_data_valid_get_merchant_response.json", GetMerchantResponse::class.java) as GetMerchantResponse
     }
 
     /**
@@ -42,8 +43,8 @@ open class BaseMerchantTest {
      *
      * @return GetMerchantResponse invalid mock merchant response
      * */
-    fun invalidMerchantListMockResponse() : GetMerchantResponse {
-        return loadMockDataFromResource("mock_data_invalid_list_merchant.json", GetMerchantResponse::class.java) as GetMerchantResponse
+    fun invalidGetMerchantMockResponse() : GetMerchantResponse {
+        return loadMockDataFromResource("mock_data_invalid_get_merchant_response.json", GetMerchantResponse::class.java) as GetMerchantResponse
     }
 
     /**
@@ -51,8 +52,8 @@ open class BaseMerchantTest {
      *
      * @return GetMerchantResponse empty mock merchant response
      * */
-    fun emptyMerchantListMockResponse() : GetMerchantResponse {
-        return loadMockDataFromResource("mock_data_empty_list_merchant.json", GetMerchantResponse::class.java) as GetMerchantResponse
+    fun emptyGetMerchantMockResponse() : GetMerchantResponse {
+        return loadMockDataFromResource("mock_data_empty_get_merchant_response.json", GetMerchantResponse::class.java) as GetMerchantResponse
     }
 
     /**
