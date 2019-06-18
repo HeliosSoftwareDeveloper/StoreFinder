@@ -1,11 +1,9 @@
 /* (c) Helios Software Developer. All rights reserved. */
-package com.heliossoftwaredeveloper.storefinder.Store
+package com.heliossoftwaredeveloper.storefinder.Store.Interactor
 
 import com.heliossoftwaredeveloper.storefinder.API.APIService
-import com.heliossoftwaredeveloper.storefinder.API.GetMerchantResponse
 import com.heliossoftwaredeveloper.storefinder.RxImmediateSchedulerRule
-import com.heliossoftwaredeveloper.storefinder.Store.Model.Interactor.MerchantInteractor
-import com.heliossoftwaredeveloper.storefinder.Store.Model.Interactor.MerchantInteractorImpl
+import com.heliossoftwaredeveloper.storefinder.Store.BaseMerchantTest
 import com.heliossoftwaredeveloper.storefinder.Store.Model.MerchantListItem
 import io.reactivex.Observable
 import org.junit.*
@@ -13,9 +11,6 @@ import org.junit.Assert.*
 import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.junit.MockitoJUnit
-import com.google.gson.Gson
-import java.io.BufferedReader
-import java.io.FileReader
 
 /**
  * Created by Ruel N. Grajo on 06/08/2019.
@@ -23,18 +18,14 @@ import java.io.FileReader
  * Unit-test class for MerchantInteractor
  */
 
-class TestMerchantInteractor {
-
-    private val EXPECTED_VALID_MERCHANT_LIST_ITEM_SIZE = 16
-    private val EXPECTED_EMPTY_MERCHANT_LIST_ITEM_SIZE = 0
+class MerchantInteractorTest : BaseMerchantTest(){
 
     @Rule @JvmField val rule = MockitoJUnit.rule()!!
     @Rule @JvmField var testSchedulerRule = RxImmediateSchedulerRule()
 
-    @Mock
-    lateinit var apiService : APIService
+    @Mock private lateinit var apiService : APIService
 
-    lateinit var interactor : MerchantInteractor
+    private lateinit var interactor : MerchantInteractor
 
     @Before
     fun setUp() {
@@ -43,11 +34,7 @@ class TestMerchantInteractor {
 
     @Test
     fun testValidGetMerchantList() {
-        val validMockResourcePath = javaClass.classLoader.getResource("mock_data_valid_list_merchant.json")
-        val bufferedReader = BufferedReader(FileReader(validMockResourcePath.path))
-        val validMockResponse = Gson().fromJson(bufferedReader, GetMerchantResponse::class.java)
-
-        Mockito.`when`(apiService.getAllMerchant()).thenReturn(Observable.just(validMockResponse))
+        Mockito.`when`(apiService.getAllMerchant()).thenReturn(Observable.just(validMerchantListMockResponse()))
 
         interactor.getMerchantList(object : MerchantInteractor.GetMerchantListListener {
             override fun onGetMerchantListSuccess(listMerchantItems: List<MerchantListItem>) {
@@ -65,15 +52,11 @@ class TestMerchantInteractor {
 
     @Test
     fun testEmptyGetMerchantList() {
-        val emptyMockResourcePath = javaClass.classLoader.getResource("mock_data_empty_list_merchant.json")
-        val bufferedReader = BufferedReader(FileReader(emptyMockResourcePath.path))
-        val emptyMockResponse = Gson().fromJson(bufferedReader, GetMerchantResponse::class.java)
-
-        Mockito.`when`(apiService.getAllMerchant()).thenReturn(Observable.just(emptyMockResponse))
+        Mockito.`when`(apiService.getAllMerchant()).thenReturn(Observable.just(emptyMerchantListMockResponse()))
 
         interactor.getMerchantList(object : MerchantInteractor.GetMerchantListListener {
             override fun onGetMerchantListSuccess(listMerchantItems: List<MerchantListItem>) {
-                //Check if the list size is correct
+                //Check if the list size is empty
                 assertEquals(EXPECTED_EMPTY_MERCHANT_LIST_ITEM_SIZE, listMerchantItems.size)
             }
             override fun onGetMerchantListError(message: String?) {
@@ -83,18 +66,14 @@ class TestMerchantInteractor {
 
     @Test
     fun testInvalidGetMerchantList() {
-        val invalidMockResourcePath = javaClass.classLoader.getResource("mock_data_invalid_list_merchant.json")
-        val bufferedReader = BufferedReader(FileReader(invalidMockResourcePath.path))
-        val invalidMockResponse = Gson().fromJson(bufferedReader, GetMerchantResponse::class.java)
-
-        Mockito.`when`(apiService.getAllMerchant()).thenReturn(Observable.just(invalidMockResponse))
+        Mockito.`when`(apiService.getAllMerchant()).thenReturn(Observable.just(invalidMerchantListMockResponse()))
 
         interactor.getMerchantList(object : MerchantInteractor.GetMerchantListListener {
             override fun onGetMerchantListSuccess(listMerchantItems: List<MerchantListItem>) {
             }
             override fun onGetMerchantListError(message: String?) {
                 //Check if the list size is correct
-                assertNull(message)
+                assertEquals(EXPECTED_SERVICE_ERROR_MESSAGE, message)
             }
         })
     }

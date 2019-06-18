@@ -9,8 +9,7 @@ import java.io.Serializable
  * Data class holder for merchant details
  */
 
-data class Merchant(val merchantID : Int, val merchantName : String, val merchantCategory : Int, val merchantWebsite : String,
-                    val merchantIcon: String, val merchantDetails : String, val merchantBranches : List<Branches>) : Serializable {
+data class Merchant(val merchantID : Int, val merchantName : String, val merchantCategory : Int, val merchantWebsite : String, val merchantIcon: String, val merchantDetails : String, val merchantBranches : List<Branches>) : Serializable {
 
     data class Branches(val branchLocation : List<Double>, val branchName : String, val branchAddress : String, val branchStoreHours : String, val branchPhoneNumber : String) : Serializable
 

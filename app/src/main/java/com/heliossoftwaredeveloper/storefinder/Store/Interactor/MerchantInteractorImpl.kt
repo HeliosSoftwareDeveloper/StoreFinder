@@ -1,5 +1,5 @@
 /* (c) Helios Software Developer. All rights reserved. */
-package com.heliossoftwaredeveloper.storefinder.Store.Model.Interactor
+package com.heliossoftwaredeveloper.storefinder.Store.Interactor
 
 import com.heliossoftwaredeveloper.storefinder.API.APIService
 import com.heliossoftwaredeveloper.storefinder.API.GetMerchantResponse
@@ -15,7 +15,8 @@ import io.reactivex.schedulers.Schedulers
  */
 class MerchantInteractorImpl(private val apiService : APIService) : MerchantInteractor {
 
-    var disposable: Disposable? = null
+    private var disposable: Disposable? = null
+    private val SERVICE_ERROR_MESSAGE = "An error occured. Please try again later."
 
     override fun getMerchantList(getMerchantListListener: MerchantInteractor.GetMerchantListListener) {
         disposable = apiService.getAllMerchant()
@@ -27,7 +28,7 @@ class MerchantInteractorImpl(private val apiService : APIService) : MerchantInte
                             onDestroy()
                         },
                         {  e ->
-                            getMerchantListListener.onGetMerchantListError(e.message)
+                            getMerchantListListener.onGetMerchantListError(SERVICE_ERROR_MESSAGE)
                             onDestroy()
                         }
                 )

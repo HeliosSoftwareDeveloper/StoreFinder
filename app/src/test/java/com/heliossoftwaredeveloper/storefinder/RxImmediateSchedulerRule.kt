@@ -1,8 +1,6 @@
 package com.heliossoftwaredeveloper.storefinder
 
-import io.reactivex.Scheduler
 import io.reactivex.android.plugins.RxAndroidPlugins
-import io.reactivex.internal.schedulers.ExecutorScheduler
 import io.reactivex.plugins.RxJavaPlugins
 import io.reactivex.schedulers.Schedulers
 import org.junit.rules.TestRule

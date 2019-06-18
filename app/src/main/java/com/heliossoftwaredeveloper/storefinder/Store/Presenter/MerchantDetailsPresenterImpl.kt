@@ -16,7 +16,10 @@ class MerchantDetailsPresenterImpl(merchantDetailsView : MerchantDetailsView)  :
 
     val mMerchantDetailsView = merchantDetailsView
 
-    override fun getMerchantBranchMarkers(merchant: Merchant) {
+    override fun getMerchantBranchMarkers(merchant: Merchant?) {
+        if (merchant == null) {
+            return
+        }
 
         var merchantLocation : LatLng? = null //need to save the instance to move & zoom the map camera to the last branch of merchant.
 

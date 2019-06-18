@@ -1,5 +1,5 @@
 /* (c) Helios Software Developer. All rights reserved. */
-package com.heliossoftwaredeveloper.storefinder.Store.Model.Interactor
+package com.heliossoftwaredeveloper.storefinder.Store.Interactor
 
 import com.heliossoftwaredeveloper.storefinder.Store.Model.MerchantListItem
 
