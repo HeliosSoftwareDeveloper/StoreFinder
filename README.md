@@ -9,7 +9,7 @@ Sample Application to demonstrate MVP pattern with RxJava & Retrofit using Kotli
   <li>Constants class -> used to store all const variables</li>
   <li>Delivering Object/Data to a fragment using Interface Callback</li>
   <li>DividerSpaceItemDecoration -> used to add spaces between items on recyclerview</li>
-  <li>GoogleMap implemenation on Fragment</li>
+  <li>GoogleMap implementation on Fragment</li>
   <li>Handle User-Permission-Request</li>
   <li>Dimens.xml -> used to store all view sizes</li>
   <li>colors.xml -> used to store all custom-colors that is needed by the application</li>
