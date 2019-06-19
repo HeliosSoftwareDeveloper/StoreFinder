@@ -55,7 +55,7 @@ class MerchantListFragment : Fragment(), MerchantListView, MerchantListAdapter.M
         recycleViewMerchants.layoutManager = LinearLayoutManager(activity)
         recycleViewMerchants.addItemDecoration(DividerSpaceItemDecoration(resources.getDimension(R.dimen.margin_small).toInt(), false))
 
-        merchantListAdapter = MerchantListAdapter(ArrayList(), this)
+        merchantListAdapter = MerchantListAdapter(this)
         recycleViewMerchants.adapter = merchantListAdapter
 
         pullToRefreshLayout.setOnRefreshListener(SwipeRefreshLayout.OnRefreshListener {
