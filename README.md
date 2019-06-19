@@ -1,5 +1,5 @@
 # HeliosStoreFinder
-Sample Application to demonstrate MVP pattern with RxJava & Retrofit using Kotlin. Below are the complete features of the application:
+Sample Application to demonstrate MVP pattern with RxJava & Retrofit using Kotlin. It also has corresponding UNIT TEST for interactor, presenter and model. I used  mockito & junit for unit testing. Below are the complete features of the application:
 
 <ul>
   <li>Retrofit with RxJava -> used to handle network calls using observable</li>
