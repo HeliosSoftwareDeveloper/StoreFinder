@@ -26,7 +26,7 @@ class MainActivity : ViewNavigator(), MerchantListFragment.OnMerchantListFragmen
             ActivityCompat.requestPermissions(this, Constants.listUserRequiredPermission, Constants.REQUEST_CODE_USER_PERMISSION_ALL)
         }
 
-        nagivateTo(MerchantListFragment(), false)
+        //nagivateTo(MerchantListFragment(), false)
     }
 
     override fun onMerchantClicked(merchant: Merchant) {
