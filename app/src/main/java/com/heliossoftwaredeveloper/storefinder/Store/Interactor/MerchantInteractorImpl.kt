@@ -1,8 +1,8 @@
 /* (c) Helios Software Developer. All rights reserved. */
-package com.heliossoftwaredeveloper.storefinder.Store.Model.Interactor
+package com.heliossoftwaredeveloper.storefinder.Store.Interactor
 
+import com.heliossoftwaredeveloper.storefinder.API.APIService
 import com.heliossoftwaredeveloper.storefinder.API.GetMerchantResponse
-import com.heliossoftwaredeveloper.storefinder.API.RetrofitClientInstance
 import com.heliossoftwaredeveloper.storefinder.Store.Model.MerchantListItem
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -13,25 +13,22 @@ import io.reactivex.schedulers.Schedulers
  *
  * Interactor class to handle transactions related to merchant
  */
-class MerchantInteractorImpl : MerchantInteractor {
+class MerchantInteractorImpl(private val apiService : APIService? = null) : MerchantInteractor {
 
-    var disposable: Disposable? = null
-
-    val apiService by lazy {
-        RetrofitClientInstance.create()
-    }
+    private var disposable: Disposable? = null
+    private val SERVICE_ERROR_MESSAGE = "An error occured. Please try again later."
 
     override fun getMerchantList(getMerchantListListener: MerchantInteractor.GetMerchantListListener) {
-        disposable = apiService.getAllMerchant()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
+        disposable = apiService?.getAllMerchant()
+                ?.subscribeOn(Schedulers.io())
+                ?.observeOn(AndroidSchedulers.mainThread())
+                ?.subscribe(
                         { result ->
                             getMerchantListListener.onGetMerchantListSuccess(groupMerchantByCategory(result))
                             onDestroy()
                         },
                         {  e ->
-                            getMerchantListListener.onGetMerchantListError(e.message)
+                            getMerchantListListener.onGetMerchantListError(SERVICE_ERROR_MESSAGE)
                             onDestroy()
                         }
                 )

@@ -18,6 +18,7 @@ import com.heliossoftwaredeveloper.storefinder.Store.Presenter.MerchantListPrese
 import com.heliossoftwaredeveloper.storefinder.Store.View.Adapter.MerchantListAdapter
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.SearchView
+import com.heliossoftwaredeveloper.storefinder.API.RetrofitClientInstance
 import com.heliossoftwaredeveloper.storefinder.SharedComponents.DividerSpaceItemDecoration
 import com.heliossoftwaredeveloper.storefinder.Store.Model.MerchantListItem
 import com.heliossoftwaredeveloper.storefinder.Store.View.MerchantListView
@@ -43,7 +44,8 @@ class MerchantListFragment : Fragment(), MerchantListView, MerchantListAdapter.M
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view =  inflater.inflate(R.layout.fragment_merchant_list, container, false)
-        merchantPresenter = MerchantListPresenterImpl(this)
+        val apiService by lazy { RetrofitClientInstance.create() }
+        merchantPresenter = MerchantListPresenterImpl(this, apiService)
         return view
     }
 
@@ -53,7 +55,7 @@ class MerchantListFragment : Fragment(), MerchantListView, MerchantListAdapter.M
         recycleViewMerchants.layoutManager = LinearLayoutManager(activity)
         recycleViewMerchants.addItemDecoration(DividerSpaceItemDecoration(resources.getDimension(R.dimen.margin_small).toInt(), false))
 
-        merchantListAdapter = MerchantListAdapter(merchantPresenter.getCacheMerchantList(), this)
+        merchantListAdapter = MerchantListAdapter(this)
         recycleViewMerchants.adapter = merchantListAdapter
 
         pullToRefreshLayout.setOnRefreshListener(SwipeRefreshLayout.OnRefreshListener {
@@ -91,6 +93,10 @@ class MerchantListFragment : Fragment(), MerchantListView, MerchantListAdapter.M
 
     override fun updateLoaderVisibility(isVisible: Boolean) {
         pullToRefreshLayout.isRefreshing = isVisible
+    }
+
+    override fun showErrorMessage(message: String) {
+        //show error message
     }
 
     override fun onMerchantItemListClicked(merchant: Merchant) {

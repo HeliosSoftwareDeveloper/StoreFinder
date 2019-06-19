@@ -17,10 +17,10 @@ import com.heliossoftwaredeveloper.storefinder.Store.View.Adapter.ViewHolder.Mer
  * Adapter class for MerchantList
  */
 
-class MerchantListAdapter(listMerchant: List<MerchantListItem>, merchantListAdapterListener : MerchantListAdapterListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>(), Filterable {
+class MerchantListAdapter(merchantListAdapterListener : MerchantListAdapterListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>(), Filterable {
 
-    private var mListMerchant = listMerchant
-    private var filteredMerchantList = listMerchant
+    private var cachedMerchantList : List<MerchantListItem> = ArrayList()
+    private var filteredMerchantList : List<MerchantListItem> = ArrayList()
     private var mMerchantListAdapterListener = merchantListAdapterListener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -52,14 +52,14 @@ class MerchantListAdapter(listMerchant: List<MerchantListItem>, merchantListAdap
             override fun performFiltering(charSequence: CharSequence): Filter.FilterResults {
                 if (charSequence.isEmpty()) {
                     return Filter.FilterResults().apply {
-                        this.values = mListMerchant
+                        this.values = cachedMerchantList
                     }
                 }
 
                 return Filter.FilterResults().apply {
                     val charString = charSequence.toString()
                     val filteredList = ArrayList<MerchantListItem>()
-                    for (row in mListMerchant) {
+                    for (row in cachedMerchantList) {
                         when (row.merchantListItemType) {
                             MerchantListItem.MerchantListItemType.ITEM_HEADER -> {
                                 removeEmptyChildHeaderItem(filteredList)
@@ -104,7 +104,7 @@ class MerchantListAdapter(listMerchant: List<MerchantListItem>, merchantListAdap
      * @param listMerchant listItems to add
      * */
     fun updateList(listMerchant: List<MerchantListItem>) {
-        mListMerchant = listMerchant
+        cachedMerchantList = listMerchant
         filteredMerchantList = listMerchant
         notifyDataSetChanged()
     }

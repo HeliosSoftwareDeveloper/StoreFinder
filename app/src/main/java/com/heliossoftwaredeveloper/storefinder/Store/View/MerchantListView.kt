@@ -13,4 +13,5 @@ interface MerchantListView {
     fun onDestroy()
     fun onUpdateMerchantList(merchantListItem : List<MerchantListItem>)
     fun updateLoaderVisibility(isVisible : Boolean)
+    fun showErrorMessage(message : String)
 }

@@ -1,0 +1,584 @@
+{
+
+"merchantCategories" : [
+    {
+        "categoryName" : "Hardware store",
+        "categoryId" : 1
+    },
+    {
+        "categoryName" : "Drug store",
+        "categoryId" : 2
+    },
+    {
+        "categoryName" : "Supermarket",
+        "categoryId" : 3
+    },
+    {
+        "categoryName" : "Convenience store",
+        "categoryId" : 4
+    }
+],
+    "merchants": [
+      {
+        "merchantID": 1,
+        "merchantBranches": [
+            {
+              "branchName":"SM Aura Premier",
+              "branchAddress" : "L/GF SM Aura Premier, 26th St. cor. McKinley Parkway,, Brgy. Fort Bonifacio, Global City, Taguig, 1634 Metro Manila",
+              "branchLocation": [
+                14.546748,121.0545499
+              ],
+              "branchStoreHours": "10am–10pm",
+              "branchPhoneNumber": "(02) 808 8276"
+            },
+            {
+              "branchName":"Market! Market!",
+              "branchAddress" : "3/F MARKET MARKET, Bonifacio Global City, Taguig, Taguig, 1634 Metro Manila",
+              "branchLocation": [
+                14.5491314,121.0558947
+              ],
+              "branchStoreHours": "10am–9pm",
+              "branchPhoneNumber": "(02) 886 6761"
+            },
+            {
+              "branchName":"SM Makati",
+              "branchAddress" : "SM Makati, 3rd, Courtyard Dr, Village, Makati, 1223 Metro Manila",
+              "branchLocation": [
+                14.5497324,121.02677
+              ],
+              "branchStoreHours": "10am–9pm",
+              "branchPhoneNumber": "(02) 892 5905"
+            },
+            {
+              "branchName":"Greenbelt 1",
+              "branchAddress" : "G/F Greenbelt I Square, Ayala Commercial Center,, Paseo de Roxas cor. Legaspi St. Salcedo Village, Makati, 1227 Metro Manila",
+              "branchLocation": [
+                14.5530525,121.020071
+              ],
+              "branchStoreHours": "10am–8pm",
+              "branchPhoneNumber": "(02) 815 9465"
+            }
+        ],
+        "merchantName": "ACE Hardware",
+        "merchantCategory":1,
+        "merchantWebsite":"https://www.acehardware.ph/",
+        "merchantIcon": "/images/ace_hardware_icon.png",
+        "merchantDetails": "Ace Hardware Corporation is an American hardware retailers' cooperative based in Oak Brook, Illinois, United States. It is the world's largest hardware retail cooperative, and the largest non-grocery American retail cooperative."
+      },
+      {
+        "merchantID": 2,
+        "merchantBranches": [
+            {
+              "branchName":"Shangri-La Plaza",
+              "branchAddress" : "6th Level, Shangri-la Plaza Mall, Shaw Boulevard, Ortigas Center, Mandaluyong, Metro Manila",
+              "branchLocation": [
+                14.5817664,121.0548896
+              ],
+              "branchStoreHours": "10am–10pm",
+              "branchPhoneNumber": "(02) 635 0410"
+            },
+            {
+              "branchName":"Rockwell",
+              "branchAddress" : "Powerplant Mall, Concourse Level, Rockwell Center, Makati, 1200 Metro Manila",
+              "branchLocation": [
+                14.5649154,121.0361977
+              ],
+              "branchStoreHours": "10am–9pm",
+              "branchPhoneNumber": "(02) 898 2572"
+            },
+            {
+              "branchName":"Glorietta",
+              "branchAddress" : "3rd Level, Glorietta 1, Ayala Center, Makati, 1226 Metro Manila",
+              "branchLocation": [
+                14.5516704,121.0246845
+              ],
+              "branchStoreHours": "10am–10:30pm",
+              "branchPhoneNumber": "(02) 867 1270"
+            },
+            {
+              "branchName":"Greenbelt",
+              "branchAddress" : "3rd Level, Greenbelt 5, Ayala Center, Makati, 1226 Metro Manila",
+              "branchLocation": [
+                14.5526828,121.0204553
+              ],
+              "branchStoreHours": "11am–9pm",
+              "branchPhoneNumber": "(02) 621 5254"
+            }
+        ],
+        "merchantName": "True Value",
+        "merchantCategory":1,
+        "merchantWebsite":"https://truevalue.com.ph/",
+        "merchantIcon": "/images/true_value_icon.jpg",
+        "merchantDetails": "True Value is a lifestyle home center that goes beyond the conventional do-it-yourself store. True Value is not only a trusted and recognized brand worldwide, it’s also a name synonymous with great shopping experience, quality merchandise and excellent customer service."
+      },
+      {
+        "merchantID": 3,
+        "merchantBranches": [
+            {
+              "branchName":"BGC Fort",
+              "branchAddress" : "32nd Street & Justicia Drive, BGC Fort, Taguig, 1634 Metro Manila",
+              "branchLocation": [
+                14.5539206,121.0497113
+              ],
+              "branchStoreHours": "9am–8pm",
+              "branchPhoneNumber": "(02) 815 4759"
+            },
+            {
+              "branchName":"Ortigas",
+              "branchAddress" : "168 Ortigas Center, Ortigas Ave. cor. Meralco Ave., Pasig City, Ortigas Ave, Pasig, Kalakhang Maynila",
+              "branchLocation": [
+                14.5882016,121.0653609
+              ],
+              "branchStoreHours": "9am–8pm",
+              "branchPhoneNumber": "(02) 636 6944"
+            }
+        ],
+        "merchantName": "MC Home Depot",
+        "merchantCategory":1,
+        "merchantWebsite":"https://mchomedepot.com/",
+        "merchantIcon": "/images/mc_home_depot_icon.png",
+        "merchantDetails": "MC Home Depot offers the most complete range of products that any architect, engineer, interior designer, contractor, plumber, dealer or ordinary home-building shopper could ever need while shopping for large or small scale home or home improvement projects."
+      },
+      {
+        "merchantID": 4,
+        "merchantBranches": [
+            {
+              "branchName":"I.T. Hub",
+              "branchAddress" : "IT Hub, 2251 Chino Roces Ave, Cor Epifanio de los Santos Ave, Makati, 1233 Metro Manila",
+              "branchLocation": [
+                14.542853,121.0178444
+              ],
+              "branchStoreHours": "9am–8pm",
+              "branchPhoneNumber": "(02) 833 4450"
+            },
+            {
+              "branchName":"Libis",
+              "branchAddress" : "90 Eulogio Rodriguez Jr. Ave, Quezon City, 1110 Metro Manila",
+              "branchLocation": [
+                14.596925,121.079984
+              ],
+              "branchStoreHours": "9am–8pm",
+              "branchPhoneNumber": "(02) 634 8387"
+            },
+            {
+              "branchName":"Home Essentials (Pasay)",
+              "branchAddress" : "#16 Jose St, Epifanio de los Santos Ave, Malibay, Pasay, 1300 Metro Manila",
+              "branchLocation": [
+                14.5390614,121.0107803
+              ],
+              "branchStoreHours": "8:30am–6pm",
+              "branchPhoneNumber": "(02) 551 7574"
+            },
+            {
+              "branchName":"Quezon Ave",
+              "branchAddress" : "24 Quezon Ave, Quezon City, 1113 Metro Manila",
+              "branchLocation": [
+                14.6202129,121.0047488
+              ],
+              "branchStoreHours": "8am–8pm",
+              "branchPhoneNumber": "0917 822 2133"
+            },
+            {
+              "branchName":"Quirino",
+              "branchAddress" : "L119-C1 Mindanao Avenue, Novaliches, Quezon City, 1116 Metro Manila",
+              "branchLocation": [
+                14.6898447,121.0291368
+              ],
+              "branchStoreHours": "8am–7pm",
+              "branchPhoneNumber": "0917 822 2107"
+            }
+        ],
+        "merchantName": "Wilcon Depot",
+        "merchantCategory":1,
+        "merchantWebsite":"http://www.wilcon.com.ph/",
+        "merchantIcon": "/images/wilcon_depot_icon.jpg",
+        "merchantDetails": "Wilcon revolutionized the construction-supply industry as it committed itself to provide convenient shopping and excellent services such as air-conditioned shops, ample parking spaces, coffee shops (for depot outlets), delivery spaces, interior design consultation, recreation corner for children, tile-cutting services, product installations, and repairs."
+      },
+      {
+        "merchantID": 5,
+        "merchantBranches": [
+            {
+              "branchName":"Walter Mart Makati",
+              "branchAddress" : "4/F Walter Mart Makati, 790 Chino Roces, cor Antonio Arnaiz Ave, Makati, 1230 Metro Manila",
+              "branchLocation": [
+                14.5508753,121.0131857
+              ],
+              "branchStoreHours": "10am–9pm",
+              "branchPhoneNumber": "(02) 889 7889"
+            },
+            {
+              "branchName":"Robinsons Place Manila",
+              "branchAddress" : "3/F Robinsons Place Manila, M. Adriatico St, Ermita, Manila, 1000 Metro Manila",
+              "branchLocation": [
+                14.5760607,120.9841436
+              ],
+              "branchStoreHours": "10am–9pm",
+              "branchPhoneNumber": "(02) 528 0852"
+            },
+            {
+              "branchName":"Robinsons Galleria",
+              "branchAddress" : "G/F Robinsons Galleria, EDSA cor, Ortigas Ave, Ortigas Center, Quezon City, 1100 Metro Manila",
+              "branchLocation": [
+                14.5909206,121.0595206
+              ],
+              "branchStoreHours": "10am–9pm",
+              "branchPhoneNumber": "(02) 528 0852"
+            }
+        ],
+        "merchantName": "Handyman Do it Best",
+        "merchantCategory":1,
+        "merchantWebsite":"https://handyman.com.ph/",
+        "merchantIcon": "/images/handy_man_do_it_best_icon.jpg",
+        "merchantDetails": "With over 164 branches nationwide, Handyman caters to your hardware and home improvement needs through people you know and products you trust."
+      },
+      {
+        "merchantID": 6,
+        "merchantBranches": [
+            {
+              "branchName":"Guevara, Mandaluyong",
+              "branchAddress" : "8 Domingo M. Guevara, Mandaluyong, 1550 Metro Manila",
+              "branchLocation": [
+                14.5785588,121.0511992
+              ],
+              "branchStoreHours": "Open 24 hours",
+              "branchPhoneNumber": "(02) 531 0877"
+            },
+            {
+              "branchName":"EDSA Shangrila Plaza",
+              "branchAddress" : "EDSA Shangrila Plaza, junction Of EDSA, Shaw Blvd. & St. Francis St. 1552, Ortigas Center, Mandaluyong, Metro Manila",
+              "branchLocation": [
+                14.581029,121.055269
+              ],
+              "branchStoreHours": "8am–11pm",
+              "branchPhoneNumber": "(02) 911 7854"
+            },
+            {
+              "branchName":"Robinson Forum",
+              "branchAddress" : "Robinson Forum, Pioneer St, Mandaluyong, 1550 Metro Manila",
+              "branchLocation": [
+                14.570618,121.047444
+              ],
+              "branchStoreHours": "10am–9pm",
+              "branchPhoneNumber": "(02) 687 6569"
+            },
+            {
+              "branchName":"BGC Fort",
+              "branchAddress" : "26th Street Corner C5 Bonifacio Global City, Taguig, 1630 Metro Manila",
+              "branchLocation": [
+                14.5490957,121.0563286
+              ],
+              "branchStoreHours": "10am–9pm",
+              "branchPhoneNumber": "(02) 886 6660"
+            },
+            {
+              "branchName":"BGC Fort, McKinley Parkway",
+              "branchAddress" : "Market Market Bonifacio Global City, 26 McKinley Pkwy, Taguig, 1634 Metro Manila",
+              "branchLocation": [
+                14.5508191,121.0555748
+              ],
+              "branchStoreHours": "8am–10pm",
+              "branchPhoneNumber": "(02) 844 1434"
+            },
+            {
+              "branchName":"San Antonio Plaza Arcade",
+              "branchAddress" : "San Antonio Plaza Arcade, McKinley Rd, Makati, Metro Manila",
+              "branchLocation": [
+                14.5470602,121.0348374
+              ],
+              "branchStoreHours": "8:30am–8:15pm",
+              "branchPhoneNumber": "(02) 867 3482"
+            }
+        ],
+        "merchantName": "Mercury Drug",
+        "merchantCategory":2,
+        "merchantWebsite":"https://www.mercurydrug.com/",
+        "merchantIcon": "/images/mercury_drug_icon.jpg",
+        "merchantDetails": "Mercury Drug has come a long way from its humble beginnings in Bambang St., Sta. Cruz, Manila.   Through the years, Mercury Drug has opened store after store all over  the Philippines to bring medicines within easy reach of its customers.  Employed with staff who are continuously trained on product knowledge and  customer service, to ensure that customers have what you want, when you  want it, where you want it, how you want it.  The spirit of service continues to help keep the nation healthy."
+      },
+      {
+        "merchantID": 7,
+        "merchantBranches": [
+            {
+              "branchName":"Forbeswood Parklane",
+              "branchAddress" : "GF Forbeswood Parklane Drive Bonifacio Global Taguig City, Taguig, 1634 Metro Manila",
+              "branchLocation": [
+                14.550119,121.044873
+              ],
+              "branchStoreHours": "9am–11pm",
+              "branchPhoneNumber": "(02) 478 9061"
+            },
+            {
+              "branchName":"Bonifacio Stopover",
+              "branchAddress" : "11th Floor, Bonifacio Stopover Corporate Center, 31st Street, cor 2nd Ave, Taguig, 1630 Metro Manila",
+              "branchLocation": [
+                14.554628,121.045295
+              ],
+              "branchStoreHours": "8am–6pm",
+              "branchPhoneNumber": "-"
+            },
+            {
+              "branchName":"Market! Market!",
+              "branchAddress" : "G/F Market! Market! C5 Fort Bonifacio Global City Taguig Metro Manila, Taguig, 1604 Metro Manila",
+              "branchLocation": [
+                14.550485,121.056289
+              ],
+              "branchStoreHours": "10am–9pm",
+              "branchPhoneNumber": "(02) 886 7607"
+            },
+            {
+              "branchName":"Uptown Mall",
+              "branchAddress" : "Lower Ground, Uptown Mall, Taguig, Metro Manila",
+              "branchLocation": [
+                14.5561844,121.0543711
+              ],
+              "branchStoreHours": "10am–10pm",
+              "branchPhoneNumber": "-"
+            },
+            {
+              "branchName":"Pioneer Center",
+              "branchAddress" : "Pioneer Center Pioneer Cor United & Brixton Sts Kapitolyo Pasig City, Pasig City, 1600 Metro Manila",
+              "branchLocation": [
+                14.572409,121.056657
+              ],
+              "branchStoreHours": "10am–9pm",
+              "branchPhoneNumber": "(02) 637 5421"
+            }
+        ],
+        "merchantName": "Watsons",
+        "merchantCategory":2,
+        "merchantWebsite":"https://www.watsons.com.ph/",
+        "merchantIcon": "/images/watsons_icon.jpg",
+        "merchantDetails": "Watsons Personal Care Stores (Phils.) Inc. is part of the Health and Beauty Store chain of A.S Watson, the largest health, beauty, cosmetics, and perfumery retailer in the world. Today, Watsons H&B Asia is the leading health and beauty chain in the continent with successful operations in 13 markets (Hong Kong, Mainland China, Macau, Singapore, Malaysia, Thailand, Vietnam, Indonesia, Taiwan, Philippines, Ukraine, Turkey and Russia)."
+      },
+      {
+        "merchantID": 8,
+        "merchantBranches": [
+            {
+              "branchName":"Makati",
+              "branchAddress" : "1200 Filmore St, Makati, Metro Manila",
+              "branchLocation": [
+                14.558768,121.0057554
+              ],
+              "branchStoreHours": "9am–9pm",
+              "branchPhoneNumber": "(02) 846 6586"
+            }
+        ],
+        "merchantName": "Cash & Carry Supermarket",
+        "merchantCategory":3,
+        "merchantWebsite":"https://cashandcarrymall.com/",
+        "merchantIcon": "/images/cash_carry_icon.png",
+        "merchantDetails": "Supermarket store in Philippines."
+      },
+      {
+        "merchantID": 9,
+        "merchantBranches": [
+            {
+              "branchName":"SM Aura Hypermarket",
+              "branchAddress" : "SM Aura Premier, McKinley Pkwy, Taguig, 1634 Metro Manila",
+              "branchLocation": [
+                14.546839,121.0547
+              ],
+              "branchStoreHours": "8am–10pm",
+              "branchPhoneNumber": "(02) 808 5547"
+            },
+            {
+              "branchName":"SM Savemore Market",
+              "branchAddress" : "Courtyard Dr, Makati, Metro Manila",
+              "branchLocation": [
+                14.5497525,121.0269409
+              ],
+              "branchStoreHours": "7am–11pm",
+              "branchPhoneNumber": "(02) 816 1040"
+            },
+            {
+              "branchName":"SM Hypermarket at Ortigas East",
+              "branchAddress" : "SM Center Pasig, E. Rodriguez Jr. Ave., Cor. Dona Julia Vargas Ave. Frontera Verde Ortigas Center, Pasig, 1604 Metro Manila",
+              "branchLocation": [
+                14.5846225,121.0779147
+              ],
+              "branchStoreHours": "8am–12am",
+              "branchPhoneNumber": "(02) 637 6223"
+            },
+            {
+              "branchName":"SM Hypermarket Taytay",
+              "branchAddress" : "SM Taytay, Manila East Road, Dolores, Taytay, 1920 Rizal",
+              "branchLocation": [
+                14.564758,121.138618
+              ],
+              "branchStoreHours": "7am–11pm",
+              "branchPhoneNumber": "(02) 286 4646"
+            }
+        ],
+        "merchantName": "SM Markets",
+        "merchantCategory":3,
+        "merchantWebsite":"https://smmarkets.ph/",
+        "merchantIcon": "/images/sm_markets_icon.png",
+        "merchantDetails": "We offer world-class holistic shopping with a complete range of merchandise and basic services at the most accessible, convenient, and practical means."
+      },
+      {
+        "merchantID": 10,
+        "merchantBranches": [
+            {
+              "branchName":"Metro Market! Market!",
+              "branchAddress" : "L1, 169 , Market! Market! Mall , 26th Street Corner C5 , Fort Bonifacio Global City, 1634 Metro Manila, Taguig, Metro Manila",
+              "branchLocation": [
+                14.5502062,121.0560842
+              ],
+              "branchStoreHours": "8am–10pm",
+              "branchPhoneNumber": "(02) 818 6645"
+            },
+            {
+              "branchName":"Metro Supermarket Manlunas",
+              "branchAddress" : "Manlunas St, Pasay, Metro Manila",
+              "branchLocation": [
+                14.5241999,121.0135954
+              ],
+              "branchStoreHours": "Open 24 hours",
+              "branchPhoneNumber": "-"
+            },
+            {
+              "branchName":"Metro Supermarket Shaw Center Mall",
+              "branchAddress" : "360 Shaw Blvd, Mandaluyong, 1552 Metro Manila",
+              "branchLocation": [
+                14.5891072,121.0367417
+              ],
+              "branchStoreHours": "9am–9pm",
+              "branchPhoneNumber": "-"
+            }
+        ],
+        "merchantName": "Metro Supermarket",
+        "merchantCategory":3,
+        "merchantWebsite":"http://themetrostores.ph/",
+        "merchantIcon": "/images/metro_store_icon.jpg",
+        "merchantDetails": "Victor Gaisano and his wife, Sally, founded the Metro Retail Stores Group in 1982 with the establishment of the Metro Gaisano Department Store and Supermarket. The group expanded to major cities outside Cebu by opening stores in key cities in Central, Western and Eastern Visayas, as well as in Central Luzon, Metro Manila and South Luzon."
+      },
+      {
+        "merchantID": 11,
+        "merchantBranches": [
+            {
+              "branchName":"Shaw Center Mall",
+              "branchAddress" : "Shaw Center Mall, 360 Shaw Blud, Hagdang Bato Libis, Mandaluyong, 1550 Metro Manila",
+              "branchLocation": [
+                14.588836,121.0372726
+              ],
+              "branchStoreHours": "Open 24 hours",
+              "branchPhoneNumber": "(02) 485 7889"
+            },
+            {
+              "branchName":"Blumentritt, San Juan",
+              "branchAddress" : "512 F. Manalo St. Cor. F. Blumentritt, Kabayanan, San Juan, 1500 Metro Manila",
+              "branchLocation": [
+                14.5956628,121.0280596
+              ],
+              "branchStoreHours": "Open 24 hours",
+              "branchPhoneNumber": "(02) 485 7889"
+            },
+            {
+              "branchName":"One McKinley Place",
+              "branchAddress" : "One McKinley Place, 26th, BGC, Taguig, 1634 Metro Manila",
+              "branchLocation": [
+                14.5493483,121.0457065
+              ],
+              "branchStoreHours": "Open 24 hours",
+              "branchPhoneNumber": "(02) 485 7889"
+            },
+            {
+              "branchName":"Net Square Building",
+              "branchAddress" : "Net Square Building, 28th Street Corner 3rd Avenue Bonifacio Global City, Taguig, 1634 Metro Manila",
+              "branchLocation": [
+                14.5511045,121.0458616
+              ],
+              "branchStoreHours": "Open 24 hours",
+              "branchPhoneNumber": "(02) 485 7889"
+            },
+            {
+              "branchName":"Pinagkaisahan - Pitogo",
+              "branchAddress" : "EDSA Corner Harvard, Pinagkaisahan - Pitogo, Makati, 1212 Metro Manila",
+              "branchLocation": [
+                14.558889,121.040007
+              ],
+              "branchStoreHours": "Open 24 hours",
+              "branchPhoneNumber": "(02) 485 7889"
+            },
+            {
+              "branchName":"Crescent Park West",
+              "branchAddress" : "Unit 14 E-Sqre Zone, Crescent Park West, Global City, 32nd St, Taguig, Metro Manila",
+              "branchLocation": [
+                14.5554952,121.0432702
+              ],
+              "branchStoreHours": "Open 24 hours",
+              "branchPhoneNumber": "(02) 485 7889"
+            }
+        ],
+        "merchantName": "7-Eleven",
+        "merchantCategory":4,
+        "merchantWebsite":"https://www.7-eleven.com.ph/",
+        "merchantIcon": "/images/7evelen_icon.jpg",
+        "merchantDetails": "7-Eleven pioneered the convenience store concept back in 1927 at the Southland Ice Company in Dallas, Texas. In addition to selling blocks of ice to refrigerate food, an enterprising ice dock employee began offering milk, bread and eggs on Sundays and evenings when grocery stores were closed."
+      },
+      {
+        "merchantID": 12,
+        "merchantBranches": [
+            {
+              "branchName":"Ministop Market! Market!",
+              "branchAddress" : "Bayside Market Market, 26th, Taguig, 1634 Metro Manila",
+              "branchLocation": [
+                14.5487094,121.0563372
+              ],
+              "branchStoreHours": "Open 24 hours",
+              "branchPhoneNumber": "(02) 635 0751"
+            },
+            {
+              "branchName":"Ministop Kalayaan",
+              "branchAddress" : "CGII, 50 Jervois St Corner Kalayaan, Pinagkaisahan, Makati, 1212 Metro Manila",
+              "branchLocation": [
+                14.5575332,121.0417743
+              ],
+              "branchStoreHours": "Open 24 hours",
+              "branchPhoneNumber": "(02) 540 5188"
+            },
+            {
+              "branchName":"Ministop Crescent Park",
+              "branchAddress" : "Unit G, Crescent Park Resid., 2Nd Avenue Bonifacio Global City, Taguig, 1634 Metro Manila",
+              "branchLocation": [
+                14.5531811,121.0442757
+              ],
+              "branchStoreHours": "Open 24 hours",
+              "branchPhoneNumber": "(02) 856 5523"
+            },
+            {
+              "branchName":"Ministop Valero Access Rd",
+              "branchAddress" : "Valero Access Rd 2, Makati, Metro Manila",
+              "branchLocation": [
+                14.558543,121.0231107
+              ],
+              "branchStoreHours": "Open 24 hours",
+              "branchPhoneNumber": "(02) 635 0751"
+            },
+            {
+              "branchName":"Ministop Salcedo",
+              "branchAddress" : "Salcedo, Legazpi Village, Makati, Kalakhang Maynila",
+              "branchLocation": [
+                14.5585988,121.0156287
+              ],
+              "branchStoreHours": "Open 24 hours",
+              "branchPhoneNumber": "(02) 631 8707"
+            },
+            {
+              "branchName":"DBP Building",
+              "branchAddress" : "DBP Building, Makati Ave Cor. Sen Gil Puyat St., Makati, 1223 Metro Manila",
+              "branchLocation": [
+                14.560801,121.0277309
+              ],
+              "branchStoreHours": "Open 24 hours",
+              "branchPhoneNumber": "-"
+            }
+        ],
+        "merchantName": "Ministop",
+        "merchantCategory":4,
+        "merchantWebsite":"https://www.ministop.com.ph",
+        "merchantIcon": "/images/ministop_icon.png",
+        "merchantDetails": "In 2000, Robinsons Retail Holdings, Inc., through a subsidiary, partnered with Japan’s Ministop Co. Ltd and Mitsubishi Corporation to open one of the leading convenience store chains in Asia to service the Filipino market."
+      }
+] 
+}
