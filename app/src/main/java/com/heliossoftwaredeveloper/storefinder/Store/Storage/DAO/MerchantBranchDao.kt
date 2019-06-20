@@ -19,5 +19,5 @@ interface MerchantBranchDao {
     fun getAll(): List<MerchantBranchDBData>
 
     @Insert(onConflict = REPLACE)
-    fun insert(merchantBranchData: MerchantBranchDBData)
+    fun insert(merchantBranchData: List<MerchantBranchDBData>)
 }
