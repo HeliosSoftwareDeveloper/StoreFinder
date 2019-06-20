@@ -2,16 +2,15 @@
 package com.heliossoftwaredeveloper.storefinder.Store
 
 import com.google.gson.Gson
-import com.heliossoftwaredeveloper.storefinder.API.GetMerchantResponse
-import com.heliossoftwaredeveloper.storefinder.Store.Model.Merchant
-import com.heliossoftwaredeveloper.storefinder.Store.Model.MerchantListItem
+import com.heliossoftwaredeveloper.storefinder.API.Model.GetMerchantResponse
+import com.heliossoftwaredeveloper.storefinder.Store.Model.MerchantItem
 import java.io.BufferedReader
 import java.io.FileReader
 
 /**
  * Created by Ruel N. Grajo on 06/18/2019.
  *
- * Base Unit-test class for Merchant flow
+ * Base Unit-test class for MerchantItem flow
  */
 
 open class BaseMerchantTest {
@@ -21,12 +20,12 @@ open class BaseMerchantTest {
     protected val EXPECTED_SERVICE_ERROR_MESSAGE = "An error occured. Please try again later."
 
     /**
-     * Base class method to get valid mock Merchant
+     * Base class method to get valid mock MerchantItem
      *
-     * @return Merchant valid mock merchant
+     * @return MerchantItem valid mock merchant
      * */
-    fun validMerchantMock() : Merchant {
-        return loadMockDataFromResource("mock_data_single_merchant.json", Merchant::class.java) as Merchant
+    fun validMerchantMock() : MerchantItem {
+        return loadMockDataFromResource("mock_data_single_merchant.json", MerchantItem::class.java) as MerchantItem
     }
 
     /**

@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.facebook.drawee.view.SimpleDraweeView
 import com.heliossoftwaredeveloper.storefinder.R
-import com.heliossoftwaredeveloper.storefinder.Store.Model.Merchant
+import com.heliossoftwaredeveloper.storefinder.Store.Model.MerchantItem
 import com.heliossoftwaredeveloper.storefinder.Store.View.Adapter.MerchantListAdapter
 
 /**
@@ -27,10 +27,10 @@ class MerchantViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
     private var imgMechantIcon : SimpleDraweeView = itemView.findViewById(R.id.imgMechantIcon)
     private var cardViewMerchant : CardView = itemView.findViewById(R.id.cardViewMerchant)
 
-    fun bind(merchant: Merchant, merchantListAdapterListener : MerchantListAdapter.MerchantListAdapterListener) {
+    fun bind(merchant: MerchantItem, merchantListAdapterListener : MerchantListAdapter.MerchantListAdapterListener) {
         txtMerchantName.text = merchant.merchantName
         txtMerchantDetails.text = merchant.merchantDetails
-        imgMechantIcon.setImageURI(Uri.parse(String.format(Merchant.IMAGE_PATH, merchant.merchantIcon)), null)
+        imgMechantIcon.setImageURI(Uri.parse(String.format(MerchantItem.IMAGE_PATH, merchant.merchantIcon)), null)
 
         cardViewMerchant.setOnClickListener(View.OnClickListener {
             merchantListAdapterListener.onMerchantItemListClicked(merchant)

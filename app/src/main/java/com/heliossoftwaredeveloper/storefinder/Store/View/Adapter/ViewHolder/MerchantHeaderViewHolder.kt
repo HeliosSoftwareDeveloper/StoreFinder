@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
 import com.heliossoftwaredeveloper.storefinder.R
-import com.heliossoftwaredeveloper.storefinder.Store.Model.MerchantCategory
+import com.heliossoftwaredeveloper.storefinder.Store.Model.MerchantItemCategory
 
 /**
  * Created by Ruel N. Grajo on 06/06/2019.
@@ -19,7 +19,7 @@ class MerchantHeaderViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
 
     private var txtMerchantCategory : TextView = itemView.findViewById(R.id.txtMerchantCategory)
 
-    fun bind(merchantCategory: MerchantCategory) {
+    fun bind(merchantCategory: MerchantItemCategory) {
         txtMerchantCategory.text = merchantCategory.categoryName
     }
 }

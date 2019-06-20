@@ -4,16 +4,16 @@ package com.heliossoftwaredeveloper.storefinder.Store.View.Adapter
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.heliossoftwaredeveloper.storefinder.Store.Model.Merchant
+import com.heliossoftwaredeveloper.storefinder.Store.Model.MerchantItem
 import com.heliossoftwaredeveloper.storefinder.Store.View.Adapter.ViewHolder.MerchantBranchViewHolder
 
 /**
  * Created by Ruel N. Grajo on 06/06/2019.
  *
- * Adapter class for Merchant Branches List
+ * Adapter class for MerchantItem Branches List
  */
 
-class MerchantBranchesAdapter(listMerchantBranches: List<Merchant.Branches>, merchantBranchesAdapterListener : MerchantBranchesAdapterListener) : RecyclerView.Adapter<MerchantBranchViewHolder>() {
+class MerchantBranchesAdapter(listMerchantBranches: List<MerchantItem.Branches>, merchantBranchesAdapterListener : MerchantBranchesAdapterListener) : RecyclerView.Adapter<MerchantBranchViewHolder>() {
 
     private var mListMerchantBranches = listMerchantBranches
     private var mMerchantListAdapterListener = merchantBranchesAdapterListener
@@ -34,6 +34,6 @@ class MerchantBranchesAdapter(listMerchantBranches: List<Merchant.Branches>, mer
      * Interface for callback of items to trigger events on fragment/activity
      */
     interface MerchantBranchesAdapterListener {
-        fun onMerchantBranchItemListClicked(merchantBranch : Merchant.Branches)
+        fun onMerchantBranchItemListClicked(merchantBranch : MerchantItem.Branches)
     }
 }

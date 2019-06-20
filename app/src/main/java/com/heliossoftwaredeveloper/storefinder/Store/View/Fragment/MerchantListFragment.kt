@@ -12,7 +12,7 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_merchant_list.*
 
 import com.heliossoftwaredeveloper.storefinder.R
-import com.heliossoftwaredeveloper.storefinder.Store.Model.Merchant
+import com.heliossoftwaredeveloper.storefinder.Store.Model.MerchantItem
 import com.heliossoftwaredeveloper.storefinder.Store.Presenter.MerchantListPresenter
 import com.heliossoftwaredeveloper.storefinder.Store.Presenter.MerchantListPresenterImpl
 import com.heliossoftwaredeveloper.storefinder.Store.View.Adapter.MerchantListAdapter
@@ -26,7 +26,7 @@ import com.heliossoftwaredeveloper.storefinder.Store.View.MerchantListView
 /**
  * Created by Ruel N. Grajo on 06/06/2019.
  *
- * Fragment class that display Merchant List.
+ * Fragment class that display MerchantItem List.
  */
 
 class MerchantListFragment : Fragment(), MerchantListView, MerchantListAdapter.MerchantListAdapterListener {
@@ -99,7 +99,7 @@ class MerchantListFragment : Fragment(), MerchantListView, MerchantListAdapter.M
         //show error message
     }
 
-    override fun onMerchantItemListClicked(merchant: Merchant) {
+    override fun onMerchantItemListClicked(merchant: MerchantItem) {
         mListener?.onMerchantClicked(merchant)
     }
 
@@ -107,6 +107,6 @@ class MerchantListFragment : Fragment(), MerchantListView, MerchantListAdapter.M
      * Interface to handle callbacks
      * */
     interface OnMerchantListFragmentListener {
-        fun onMerchantClicked(merchant: Merchant)
+        fun onMerchantClicked(merchant: MerchantItem)
     }
 }

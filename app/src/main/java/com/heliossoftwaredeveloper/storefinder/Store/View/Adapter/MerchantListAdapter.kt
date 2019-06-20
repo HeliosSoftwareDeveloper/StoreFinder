@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
-import com.heliossoftwaredeveloper.storefinder.Store.Model.Merchant
+import com.heliossoftwaredeveloper.storefinder.Store.Model.MerchantItem
 import com.heliossoftwaredeveloper.storefinder.Store.Model.MerchantListItem
 import com.heliossoftwaredeveloper.storefinder.Store.View.Adapter.ViewHolder.MerchantHeaderViewHolder
 import com.heliossoftwaredeveloper.storefinder.Store.View.Adapter.ViewHolder.MerchantViewHolder
@@ -84,7 +84,7 @@ class MerchantListAdapter(merchantListAdapterListener : MerchantListAdapterListe
      * Interface for callback of items to trigger events on fragment/activity
      */
     interface MerchantListAdapterListener {
-        fun onMerchantItemListClicked(merchant : Merchant)
+        fun onMerchantItemListClicked(merchant : MerchantItem)
     }
 
     /**

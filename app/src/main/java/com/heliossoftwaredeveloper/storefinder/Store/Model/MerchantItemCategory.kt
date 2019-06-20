@@ -8,4 +8,4 @@ import java.io.Serializable
  *
  * Data class holder for merchant category
  */
-data class MerchantCategory(val categoryId : Int, val categoryName : String) : Serializable
+data class MerchantItemCategory(val categoryId : Int, val categoryName : String) : Serializable

@@ -3,7 +3,7 @@ package com.heliossoftwaredeveloper.storefinder.Store.Presenter
 
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import com.heliossoftwaredeveloper.storefinder.Store.Model.Merchant
+import com.heliossoftwaredeveloper.storefinder.Store.Model.MerchantItem
 import com.heliossoftwaredeveloper.storefinder.Store.View.MerchantDetailsView
 
 /**
@@ -16,7 +16,7 @@ class MerchantDetailsPresenterImpl(merchantDetailsView : MerchantDetailsView)  :
 
     val mMerchantDetailsView = merchantDetailsView
 
-    override fun getMerchantBranchMarkers(merchant: Merchant?) {
+    override fun getMerchantBranchMarkers(merchant: MerchantItem?) {
         if (merchant == null) {
             return
         }
@@ -34,7 +34,7 @@ class MerchantDetailsPresenterImpl(merchantDetailsView : MerchantDetailsView)  :
         }
     }
 
-    override fun getMerchantBranchLocation(merchantBranch: Merchant.Branches) {
+    override fun getMerchantBranchLocation(merchantBranch: MerchantItem.Branches) {
         val brachLocation = merchantBranch.branchLocation
         mMerchantDetailsView.onMoveMapLocationTo(LatLng(brachLocation.first(), brachLocation.get(brachLocation.lastIndex)))
     }

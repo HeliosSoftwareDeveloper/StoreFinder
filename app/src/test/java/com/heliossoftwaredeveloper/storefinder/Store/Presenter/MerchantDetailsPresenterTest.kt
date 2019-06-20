@@ -3,7 +3,7 @@ package com.heliossoftwaredeveloper.storefinder.Store.Presenter
 
 import com.google.android.gms.maps.model.LatLng
 import com.heliossoftwaredeveloper.storefinder.Store.BaseMerchantTest
-import com.heliossoftwaredeveloper.storefinder.Store.Model.Merchant
+import com.heliossoftwaredeveloper.storefinder.Store.Model.MerchantItem
 import com.heliossoftwaredeveloper.storefinder.Store.View.MerchantDetailsView
 import org.junit.Before
 import org.junit.Test
@@ -47,7 +47,7 @@ class MerchantDetailsPresenterTest : BaseMerchantTest(){
 
     @Test
     fun testNullMerchant() {
-        val validMockMerchant : Merchant? = null
+        val validMockMerchant : MerchantItem? = null
         presenter.getMerchantBranchMarkers(validMockMerchant)
 
         //verify that no view interaction happened
