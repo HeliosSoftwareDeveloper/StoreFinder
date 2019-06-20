@@ -15,7 +15,7 @@ import io.reactivex.schedulers.Schedulers
 /**
  * Created by Ruel N. Grajo on 06/08/2019.
  *
- * Interactor class to handle transactions related to merchant
+ * Repository class to execute database transactions related to merchant
  */
 class MerchantRepositoryImpl : MerchantRepository {
 

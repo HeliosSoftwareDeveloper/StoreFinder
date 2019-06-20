@@ -11,7 +11,9 @@ import java.io.Serializable
 
 data class MerchantItem(val merchantID : Int, val merchantName : String, val merchantCategory : Int, val merchantWebsite : String, val merchantIcon: String, val merchantDetails : String, val merchantBranches : List<Branches>) : Serializable {
 
-    data class Branches(val branchLocation : List<Double>, val branchName : String, val branchAddress : String, val branchStoreHours : String, val branchPhoneNumber : String) : Serializable
+    data class Branches(val branchId : Int, val merchantID : Int, val branchLatitude :Double, val branchLongitude :Double, val branchName : String, val branchAddress : String, val branchStoreHours : String, val branchPhoneNumber : String) : Serializable
+
+    data class Category(val categoryId : Int, val categoryName : String) : Serializable
 
     companion object {
        const val IMAGE_PATH = "https://bitbucket.org/HeliosSoftwareDeveloper/storagefiles/raw/b516a0152842c9b48eb0254dfab72cad3aaf02a8/storeFinder%s"

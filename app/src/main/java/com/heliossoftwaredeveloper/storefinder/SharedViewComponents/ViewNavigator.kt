@@ -1,5 +1,5 @@
 /* (c) Helios Software Developer. All rights reserved. */
-package com.heliossoftwaredeveloper.storefinder.SharedComponents
+package com.heliossoftwaredeveloper.storefinder.SharedViewComponents
 
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity

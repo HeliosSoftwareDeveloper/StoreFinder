@@ -15,10 +15,10 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import com.heliossoftwaredeveloper.storefinder.SharedComponents.DividerSpaceItemDecoration
+import com.heliossoftwaredeveloper.storefinder.SharedViewComponents.DividerSpaceItemDecoration
 
 import com.heliossoftwaredeveloper.storefinder.R
-import com.heliossoftwaredeveloper.storefinder.SharedComponents.Constants
+import com.heliossoftwaredeveloper.storefinder.SharedViewComponents.Constants
 import com.heliossoftwaredeveloper.storefinder.Store.Model.MerchantItem
 import com.heliossoftwaredeveloper.storefinder.Store.Presenter.MerchantDetailsPresenter
 import com.heliossoftwaredeveloper.storefinder.Store.Presenter.MerchantDetailsPresenterImpl

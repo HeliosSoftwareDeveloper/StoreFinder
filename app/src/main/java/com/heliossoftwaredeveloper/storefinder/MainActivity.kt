@@ -7,8 +7,8 @@ import android.support.v4.app.ActivityCompat
 import com.heliossoftwaredeveloper.storefinder.Store.Model.MerchantItem
 import com.heliossoftwaredeveloper.storefinder.Store.View.Fragment.MerchantDetailsFragment
 import com.heliossoftwaredeveloper.storefinder.Store.View.Fragment.MerchantListFragment
-import com.heliossoftwaredeveloper.storefinder.SharedComponents.Constants
-import com.heliossoftwaredeveloper.storefinder.SharedComponents.ViewNavigator
+import com.heliossoftwaredeveloper.storefinder.SharedViewComponents.Constants
+import com.heliossoftwaredeveloper.storefinder.SharedViewComponents.ViewNavigator
 import com.heliossoftwaredeveloper.storefinder.Store.Storage.AppDatabase
 
 /**

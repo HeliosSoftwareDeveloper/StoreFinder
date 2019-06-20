@@ -6,7 +6,7 @@ import com.heliossoftwaredeveloper.storefinder.API.Model.GetMerchantResponse
 /**
  * Created by Ruel N. Grajo on 06/08/2019.
  *
- * Interactor class to handle transactions related to merchant
+ * Repository class to execute database transactions related to merchant
  */
 interface MerchantRepository {
 

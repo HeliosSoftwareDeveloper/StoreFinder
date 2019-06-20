@@ -24,8 +24,7 @@ class MerchantDetailsPresenterImpl(merchantDetailsView : MerchantDetailsView)  :
         var merchantLocation : LatLng? = null //need to save the instance to move & zoom the map camera to the last branch of merchant.
 
         for (merchantBranches in merchant.merchantBranches) {
-            val brachLocation = merchantBranches.branchLocation
-            merchantLocation = LatLng(brachLocation.first(), brachLocation.get(brachLocation.lastIndex))
+            merchantLocation = LatLng(merchantBranches.branchLatitude, merchantBranches.branchLongitude)
 
             mMerchantDetailsView.onAddMapMarker(MarkerOptions().position(merchantLocation).title(merchant.merchantName))
         }
@@ -35,7 +34,6 @@ class MerchantDetailsPresenterImpl(merchantDetailsView : MerchantDetailsView)  :
     }
 
     override fun getMerchantBranchLocation(merchantBranch: MerchantItem.Branches) {
-        val brachLocation = merchantBranch.branchLocation
-        mMerchantDetailsView.onMoveMapLocationTo(LatLng(brachLocation.first(), brachLocation.get(brachLocation.lastIndex)))
+        mMerchantDetailsView.onMoveMapLocationTo(LatLng(merchantBranch.branchLatitude, merchantBranch.branchLongitude))
     }
 }
