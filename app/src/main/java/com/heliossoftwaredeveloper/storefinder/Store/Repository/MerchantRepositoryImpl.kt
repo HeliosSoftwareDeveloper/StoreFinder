@@ -15,7 +15,6 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.functions.Function3
 
-
 /**
  * Created by Ruel N. Grajo on 06/20/2019.
  *
@@ -27,77 +26,41 @@ class MerchantRepositoryImpl : MerchantRepository {
     private val compositeDisposable = CompositeDisposable()
 
     override fun saveMerchantList(getMerchantResponse: GetMerchantResponse) {
-      saveMerchantCategoryData(getMerchantResponse)
-    }
+        val saveCategory = Observable.fromCallable {AppDatabase.INSTANCE?.merchantCategoryDao()?.insert(MerchantObjectMapper
+                .mapMerchantCategoryServiceModelToDB(getMerchantResponse.merchantCategories));""}.observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.single())
 
-    override fun getMerchantList(getMerchantListListener: MerchantRepository.GetMerchantListListener) {
-        val source1 = Observable.fromCallable {AppDatabase.INSTANCE?.merchantDao()?.getAll()
-        }.observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.computation())
+        val saveMerchant = Observable.fromCallable {AppDatabase.INSTANCE?.merchantDao()?.insert(MerchantObjectMapper
+                .mapMerchantServiceModelToDB(getMerchantResponse.merchants));""}.observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.single())
 
-        val source2 = Observable.fromCallable {AppDatabase.INSTANCE?.merchantCategoryDao()?.getAll()
-        }.observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.newThread())
+        val saveBranch = Observable.fromCallable {AppDatabase.INSTANCE?.merchantBranchDao()?.insert(MerchantObjectMapper
+                .mapMerchantBranchesServiceModelToDB(getMerchantResponse.merchantBranches));""}.observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.single())
 
-        val source3 = Observable.fromCallable {AppDatabase.INSTANCE?.merchantBranchDao()?.getAll()
-        }.observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.newThread())
-
-        Observable.zip(source1, source2, source3, Function3<List<MerchantDBData>?, List<MerchantCategoryDBData>?, List<MerchantBranchDBData>?, Any> (
-                {
-                    t1, t2, t3 ->   GetMerchantFromDBResponse(t1,t2,t3)
-                }
-        ) ).subscribeOn(Schedulers.computation())
+        Observable.zip(saveCategory, saveMerchant, saveBranch, Function3<String?, String?, String?, String> ({ t1, t2, t3 -> "" }))
+                .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-
-                    result -> getMerchantListListener.onGetMerchantListFinished((result as GetMerchantFromDBResponse))
+                    MerchantSharedPreferenceHelper.saveLastDateSync()
                 })
     }
 
-    /**
-     * Method to execute the insert method of table merchant using observable
-     *
-     * @param getMerchantResponse response from service
-     **/
-    fun saveMerchantData(getMerchantResponse: GetMerchantResponse) {
-        Observable.fromCallable{AppDatabase.INSTANCE?.merchantDao()?.insert(MerchantObjectMapper
-                .mapMerchantServiceModelToDB(getMerchantResponse.merchants))}
+    override fun getMerchantList(getMerchantListListener: MerchantRepository.GetMerchantListListener) {
+        val getMerchant = Observable.fromCallable {AppDatabase.INSTANCE?.merchantDao()?.getAll()
+        }.observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.computation())
+
+        val getCategory = Observable.fromCallable {AppDatabase.INSTANCE?.merchantCategoryDao()?.getAll()
+        }.observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.newThread())
+
+        val getBranch = Observable.fromCallable {AppDatabase.INSTANCE?.merchantBranchDao()?.getAll()
+        }.observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.newThread())
+
+        compositeDisposable.add(Observable.zip(getMerchant, getCategory, getBranch, Function3<List<MerchantDBData>?, List<MerchantCategoryDBData>?, List<MerchantBranchDBData>?, Any> (
+                { t1, t2, t3 ->   GetMerchantFromDBResponse(t1,t2,t3) }))
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doFinally {
-                    saveMerchantBranchData(getMerchantResponse)
-                }
-                .subscribe()
-    }
-
-    /**
-     * Method to execute the insert method of table merchantCategory using observable
-     *
-     * @param getMerchantResponse response from service
-     **/
-    fun saveMerchantCategoryData(getMerchantResponse: GetMerchantResponse) {
-        Observable.fromCallable{AppDatabase.INSTANCE?.merchantCategoryDao()?.insert(MerchantObjectMapper
-                .mapMerchantCategoryServiceModelToDB(getMerchantResponse.merchantCategories))}
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .doFinally {
-                    saveMerchantData(getMerchantResponse)
-                }
-                .subscribe()
-    }
-
-    /**
-     * Method to execute the insert method of table merchantBranch using observable
-     *
-     * @param getMerchantResponse response from service
-     **/
-    fun saveMerchantBranchData(getMerchantResponse: GetMerchantResponse) {
-        Observable.fromCallable{AppDatabase.INSTANCE?.merchantBranchDao()?.insert(MerchantObjectMapper
-                .mapMerchantBranchesServiceModelToDB(getMerchantResponse.merchantBranches))}
-                .subscribeOn(Schedulers.computation())
-                .observeOn(AndroidSchedulers.mainThread())
-                .doFinally {
-                    MerchantSharedPreferenceHelper.saveLastDateSync()
-                }
-                .subscribe()
+                .subscribe({
+                    result -> getMerchantListListener.onGetMerchantListFinished((result as GetMerchantFromDBResponse))
+                }))
     }
 
     override fun onDestroy() {

@@ -14,6 +14,7 @@ interface MerchantRepository {
     interface GetMerchantListListener {
         fun onGetMerchantListFinished(getMerchantFromDBResponse: GetMerchantFromDBResponse)
     }
+
     /**
      * Interface method to save api response of getMerchantList Request
      *

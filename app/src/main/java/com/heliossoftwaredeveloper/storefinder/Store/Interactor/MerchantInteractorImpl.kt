@@ -43,7 +43,6 @@ class MerchantInteractorImpl(private val apiService : APIService? = null) : Merc
         } else {
             merchantRepository.getMerchantList(object : MerchantRepository.GetMerchantListListener {
                 override fun onGetMerchantListFinished(getMerchantFromDBResponse: GetMerchantFromDBResponse) {
-
                     getMerchantListListener.onGetMerchantListSuccess(buildMerchantListItemFromDB(getMerchantFromDBResponse))
                     onDestroy()
                 }
