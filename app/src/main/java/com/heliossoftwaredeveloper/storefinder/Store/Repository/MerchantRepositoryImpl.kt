@@ -2,8 +2,10 @@
 package com.heliossoftwaredeveloper.storefinder.Store.Repository
 
 import com.heliossoftwaredeveloper.storefinder.API.Model.GetMerchantResponse
-import com.heliossoftwaredeveloper.storefinder.API.Model.Merchant
+import com.heliossoftwaredeveloper.storefinder.Store.MerchantObjectMapper
+import com.heliossoftwaredeveloper.storefinder.Store.MerchantSharedPreferenceHelper
 import com.heliossoftwaredeveloper.storefinder.Store.Storage.AppDatabase
+import com.heliossoftwaredeveloper.storefinder.Store.Storage.Model.GetMerchantFromDBResponse
 import com.heliossoftwaredeveloper.storefinder.Store.Storage.Model.MerchantBranchDBData
 import com.heliossoftwaredeveloper.storefinder.Store.Storage.Model.MerchantCategoryDBData
 import com.heliossoftwaredeveloper.storefinder.Store.Storage.Model.MerchantDBData
@@ -11,18 +13,43 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import io.reactivex.functions.Function3
+
 
 /**
- * Created by Ruel N. Grajo on 06/08/2019.
+ * Created by Ruel N. Grajo on 06/20/2019.
  *
  * Repository class to execute database transactions related to merchant
  */
+
 class MerchantRepositoryImpl : MerchantRepository {
 
     private val compositeDisposable = CompositeDisposable()
 
     override fun saveMerchantList(getMerchantResponse: GetMerchantResponse) {
-        saveMerchantCategoryData(getMerchantResponse)
+      saveMerchantCategoryData(getMerchantResponse)
+    }
+
+    override fun getMerchantList(getMerchantListListener: MerchantRepository.GetMerchantListListener) {
+        val source1 = Observable.fromCallable {AppDatabase.INSTANCE?.merchantDao()?.getAll()
+        }.observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.computation())
+
+        val source2 = Observable.fromCallable {AppDatabase.INSTANCE?.merchantCategoryDao()?.getAll()
+        }.observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.newThread())
+
+        val source3 = Observable.fromCallable {AppDatabase.INSTANCE?.merchantBranchDao()?.getAll()
+        }.observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.newThread())
+
+        Observable.zip(source1, source2, source3, Function3<List<MerchantDBData>?, List<MerchantCategoryDBData>?, List<MerchantBranchDBData>?, Any> (
+                {
+                    t1, t2, t3 ->   GetMerchantFromDBResponse(t1,t2,t3)
+                }
+        ) ).subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+
+                    result -> getMerchantListListener.onGetMerchantListFinished((result as GetMerchantFromDBResponse))
+                })
     }
 
     /**
@@ -31,13 +58,14 @@ class MerchantRepositoryImpl : MerchantRepository {
      * @param getMerchantResponse response from service
      **/
     fun saveMerchantData(getMerchantResponse: GetMerchantResponse) {
-        compositeDisposable.add(Observable.fromCallable{AppDatabase.INSTANCE?.merchantDao()?.insert(mapMerchant(getMerchantResponse.merchants))}
+        Observable.fromCallable{AppDatabase.INSTANCE?.merchantDao()?.insert(MerchantObjectMapper
+                .mapMerchantServiceModelToDB(getMerchantResponse.merchants))}
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnComplete {
+                .doFinally {
                     saveMerchantBranchData(getMerchantResponse)
                 }
-                .subscribe())
+                .subscribe()
     }
 
     /**
@@ -46,13 +74,14 @@ class MerchantRepositoryImpl : MerchantRepository {
      * @param getMerchantResponse response from service
      **/
     fun saveMerchantCategoryData(getMerchantResponse: GetMerchantResponse) {
-        compositeDisposable.add(Observable.fromCallable{AppDatabase.INSTANCE?.merchantCategoryDao()?.insert(mapMerchantCategory(getMerchantResponse.merchantCategories))}
-                .subscribeOn(Schedulers.computation())
+        Observable.fromCallable{AppDatabase.INSTANCE?.merchantCategoryDao()?.insert(MerchantObjectMapper
+                .mapMerchantCategoryServiceModelToDB(getMerchantResponse.merchantCategories))}
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnComplete {
+                .doFinally {
                     saveMerchantData(getMerchantResponse)
                 }
-                .subscribe())
+                .subscribe()
     }
 
     /**
@@ -61,68 +90,14 @@ class MerchantRepositoryImpl : MerchantRepository {
      * @param getMerchantResponse response from service
      **/
     fun saveMerchantBranchData(getMerchantResponse: GetMerchantResponse) {
-        compositeDisposable.add(Observable.fromCallable{AppDatabase.INSTANCE?.merchantBranchDao()?.insert(mapMerchantBranches(getMerchantResponse.merchantBranches))}
+        Observable.fromCallable{AppDatabase.INSTANCE?.merchantBranchDao()?.insert(MerchantObjectMapper
+                .mapMerchantBranchesServiceModelToDB(getMerchantResponse.merchantBranches))}
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe())
-    }
-
-    /**
-     * Method to map merchant service model to Database model
-     *
-     * @param merchants merchant list from service
-     *
-     * @return List<MerchantDBData> list database model of merchant
-     **/
-    private fun mapMerchant(merchants: List<Merchant>): List<MerchantDBData> {
-        return merchants.map {
-            MerchantDBData(
-                    Id = it.merchantId,
-                    categoryId = it.categoryId,
-                    merchantName = it.merchantName,
-                    merchantWebsite = it.merchantWebsite,
-                    merchantIcon = it.merchantIcon,
-                    merchantDetails = it.merchantDetails
-            )
-        }
-    }
-
-    /**
-     * Method to map merchantCategory service model to Database model
-     *
-     * @param merchantCategory merchant category list from service
-     *
-     * @return List<MerchantCategoryDBData> list database model of merchant category
-     **/
-    private fun mapMerchantCategory(merchantCategory: List<Merchant.Category>): List<MerchantCategoryDBData> {
-        return merchantCategory.map {
-            MerchantCategoryDBData(
-                    Id = it.categoryId,
-                    categoryName = it.categoryName
-            )
-        }
-    }
-
-    /**
-     * Method to map merchantBranch service model to Database model
-     *
-     * @param merchantBranch merchant branch list from service
-     *
-     * @return List<MerchantBranchDBData> list database model of merchant branch
-     **/
-    private fun mapMerchantBranches(merchantBranch: List<Merchant.Branch>): List<MerchantBranchDBData> {
-        return merchantBranch.map {
-            MerchantBranchDBData(
-                    Id = it.branchId,
-                    merchantId = it.merchantId,
-                    branchName = it.branchName,
-                    branchAddress = it.branchAddress,
-                    branchLatitude = it.branchLatitude,
-                    branchLongitude = it.branchLongitude,
-                    branchStoreHours = it.branchStoreHours,
-                    branchPhoneNumber = it.branchPhoneNumber
-            )
-        }
+                .doFinally {
+                    MerchantSharedPreferenceHelper.saveLastDateSync()
+                }
+                .subscribe()
     }
 
     override fun onDestroy() {

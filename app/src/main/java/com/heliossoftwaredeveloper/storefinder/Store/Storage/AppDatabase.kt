@@ -25,19 +25,22 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun merchantCategoryDao(): MerchantCategoryDao
 
     companion object {
+        @Volatile
         var INSTANCE: AppDatabase? = null
 
         fun getAppDataBase(context: Context): AppDatabase? {
-            if (INSTANCE == null){
-                synchronized(AppDatabase::class){
-                    INSTANCE = Room.databaseBuilder(context.applicationContext, AppDatabase::class.java, "DBMerchants").build()
-                }
-            }
-            return INSTANCE
-        }
+            return INSTANCE ?: synchronized(this) {
+                        val instance = Room.databaseBuilder(
+                                context.applicationContext,
+                                AppDatabase::class.java,
+                                "DBMerchants"
+                        )
+                        .fallbackToDestructiveMigration()
+                        .build()
+                INSTANCE = instance
 
-        fun destroyDataBase(){
-            INSTANCE = null
+                instance
+            }
         }
     }
 }

@@ -3,7 +3,6 @@ package com.heliossoftwaredeveloper.storefinder.Store
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.heliossoftwaredeveloper.storefinder.AppController
 
 /**
  * Created by Ruel N. Grajo on 06/08/2019.
@@ -18,11 +17,15 @@ object MerchantSharedPreferenceHelper {
 
     private const val TIME_INTERVAL_TO_SYNC = 4 * 3600 * 1000 //4 Hours
 
-    val sharedPref: SharedPreferences = AppController().getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
+    lateinit var sharedPref: SharedPreferences
+
+    fun initialize(context: Context){
+        sharedPref = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
+    }
 
     fun isSyncRequired() : Boolean {
         val availableTimeToSync = getLastDateSync() + TIME_INTERVAL_TO_SYNC
-        return availableTimeToSync >= System.currentTimeMillis()
+        return System.currentTimeMillis() >=  availableTimeToSync
     }
 
     private fun getLastDateSync() : Long {

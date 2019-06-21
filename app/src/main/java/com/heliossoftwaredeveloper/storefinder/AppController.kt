@@ -3,6 +3,7 @@ package com.heliossoftwaredeveloper.storefinder
 
 import android.app.Application
 import com.facebook.drawee.backends.pipeline.Fresco
+import com.heliossoftwaredeveloper.storefinder.Store.MerchantSharedPreferenceHelper
 import com.heliossoftwaredeveloper.storefinder.Store.Storage.AppDatabase
 
 /**
@@ -13,17 +14,13 @@ import com.heliossoftwaredeveloper.storefinder.Store.Storage.AppDatabase
 
 class AppController : Application() {
 
-    private lateinit var mInstance: AppController
+    private var mInstance: AppController? = null
 
     override fun onCreate() {
         super.onCreate()
-        mInstance = this;
+        mInstance = this
         Fresco.initialize(this)
+        MerchantSharedPreferenceHelper.initialize(this)
         AppDatabase.getAppDataBase(this)
-    }
-
-    @Synchronized
-    fun getInstance(): AppController {
-        return mInstance
     }
 }

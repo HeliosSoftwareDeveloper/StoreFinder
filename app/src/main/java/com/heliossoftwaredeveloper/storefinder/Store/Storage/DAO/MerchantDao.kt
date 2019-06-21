@@ -8,7 +8,7 @@ import android.arch.persistence.room.Query
 import com.heliossoftwaredeveloper.storefinder.Store.Storage.Model.MerchantDBData
 
 /**
- * Created by Ruel N. Grajo on 06/06/2019.
+ * Created by Ruel N. Grajo on 06/19/2019.
  *
  * Data Access Object class holder for merchant
  */

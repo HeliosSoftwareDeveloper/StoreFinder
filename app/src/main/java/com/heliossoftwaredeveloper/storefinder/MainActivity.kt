@@ -9,7 +9,6 @@ import com.heliossoftwaredeveloper.storefinder.Store.View.Fragment.MerchantDetai
 import com.heliossoftwaredeveloper.storefinder.Store.View.Fragment.MerchantListFragment
 import com.heliossoftwaredeveloper.storefinder.SharedViewComponents.Constants
 import com.heliossoftwaredeveloper.storefinder.SharedViewComponents.ViewNavigator
-import com.heliossoftwaredeveloper.storefinder.Store.Storage.AppDatabase
 
 /**
  * Created by Ruel N. Grajo on 06/06/2019.
@@ -41,10 +40,5 @@ class MainActivity : ViewNavigator(), MerchantListFragment.OnMerchantListFragmen
                 //show message for future development
             }
         }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        AppDatabase.destroyDataBase()
     }
 }
