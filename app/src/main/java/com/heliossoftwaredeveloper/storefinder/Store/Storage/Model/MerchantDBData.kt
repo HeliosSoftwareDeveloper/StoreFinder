@@ -10,6 +10,7 @@ import android.arch.persistence.room.PrimaryKey
  *
  * Database Table Model class for merchant
  */
+
 @Entity(tableName = "MerchantDBData",
         foreignKeys = [ForeignKey(entity = MerchantCategoryDBData::class,
                 parentColumns = ["Id"], childColumns = ["categoryId"])])

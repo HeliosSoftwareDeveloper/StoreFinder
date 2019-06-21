@@ -12,8 +12,18 @@ import com.heliossoftwaredeveloper.storefinder.Store.Storage.AppDatabase
  */
 
 class AppController : Application() {
+
+    private lateinit var mInstance: AppController
+
     override fun onCreate() {
         super.onCreate()
+        mInstance = this;
         Fresco.initialize(this)
+        AppDatabase.getAppDataBase(this)
+    }
+
+    @Synchronized
+    fun getInstance(): AppController {
+        return mInstance
     }
 }

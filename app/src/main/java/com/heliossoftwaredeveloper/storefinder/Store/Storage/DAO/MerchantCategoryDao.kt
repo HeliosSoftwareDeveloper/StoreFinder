@@ -1,3 +1,4 @@
+/* (c) Helios Software Developer. All rights reserved. */
 package com.heliossoftwaredeveloper.storefinder.Store.Storage.DAO
 
 import android.arch.persistence.room.Dao
@@ -19,7 +20,4 @@ interface MerchantCategoryDao {
 
     @Insert(onConflict = REPLACE)
     fun insert(merchantCategoryDBData: List<MerchantCategoryDBData>)
-
-    @Query("DELETE from MerchantCategoryDBData")
-    fun deleteAll()
 }

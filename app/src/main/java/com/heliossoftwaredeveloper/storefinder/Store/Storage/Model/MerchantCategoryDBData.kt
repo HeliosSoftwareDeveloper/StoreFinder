@@ -9,6 +9,7 @@ import android.arch.persistence.room.PrimaryKey
  *
  * Database Table Model class for merchant
  */
+
 @Entity(tableName = "MerchantCategoryDBData")
 data class MerchantCategoryDBData(@PrimaryKey(autoGenerate = false) var Id: Int,
                                   var categoryName: String){

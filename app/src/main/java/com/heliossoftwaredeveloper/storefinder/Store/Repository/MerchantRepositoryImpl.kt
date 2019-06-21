@@ -19,7 +19,7 @@ import io.reactivex.schedulers.Schedulers
  */
 class MerchantRepositoryImpl : MerchantRepository {
 
-    val compositeDisposable = CompositeDisposable()
+    private val compositeDisposable = CompositeDisposable()
 
     override fun saveMerchantList(getMerchantResponse: GetMerchantResponse) {
         saveMerchantCategoryData(getMerchantResponse)

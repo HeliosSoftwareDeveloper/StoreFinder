@@ -16,7 +16,7 @@ class MerchantTest : BaseMerchantTest(){
 
     @Test
     fun testValidGetMerchantList() {
-        val mockedMerchantListItems = MerchantInteractorImpl().groupMerchantByCategory(validGetMerchantMockResponse())
+        val mockedMerchantListItems = MerchantInteractorImpl().buildMerchantListItem(validGetMerchantMockResponse())
 
         //Check the content of MerchantListItems
         Assert.assertNotNull(mockedMerchantListItems)

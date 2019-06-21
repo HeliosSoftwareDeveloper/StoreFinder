@@ -40,9 +40,9 @@ class MerchantInteractorTest : BaseMerchantTest(){
             override fun onGetMerchantListSuccess(listMerchantItems: List<MerchantListItem>) {
                 //Check if the list size is correct
                 assertEquals(EXPECTED_VALID_MERCHANT_LIST_ITEM_SIZE, listMerchantItems.size)
-                //Check if second index type is header to check the groupMerchantByCategory() method if correct
+                //Check if second index type is header to check the buildMerchantListItem() method if correct
                 assertEquals(MerchantListItem.MerchantListItemType.ITEM_HEADER, listMerchantItems[0].merchantListItemType)
-                //Check if second index type is child to check the groupMerchantByCategory() method if correct
+                //Check if second index type is child to check the buildMerchantListItem() method if correct
                 assertEquals(MerchantListItem.MerchantListItemType.ITEM_CHILD, listMerchantItems[1].merchantListItemType)
             }
             override fun onGetMerchantListError(message: String?) {

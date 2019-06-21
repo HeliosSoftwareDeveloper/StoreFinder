@@ -30,7 +30,7 @@ class MerchantInteractorImpl(private val apiService : APIService? = null) : Merc
                 ?.subscribe(
                         { result ->
                             merchantRepository.saveMerchantList(result)
-                            getMerchantListListener.onGetMerchantListSuccess(groupMerchantByCategory(result))
+                            getMerchantListListener.onGetMerchantListSuccess(buildMerchantListItem(result))
                             onDestroy()
                         },
                         {  e ->
@@ -40,7 +40,14 @@ class MerchantInteractorImpl(private val apiService : APIService? = null) : Merc
                 )
     }
 
-    fun groupMerchantByCategory(getMerchantResponse: GetMerchantResponse) : List<MerchantListItem>{
+    /**
+     * Method to build List<MerchantListItem> from service response, arranged by group category
+     *
+     * @param getMerchantResponse service response
+     *
+     * @return List<MerchantItem> list view model of merchant
+     **/
+    private fun buildMerchantListItem(getMerchantResponse: GetMerchantResponse) : List<MerchantListItem>{
         var listMerchantItem = ArrayList<MerchantListItem>()
 
         for (merchantCategory in mapMerchantCategories(getMerchantResponse.merchantCategories)) {
@@ -119,5 +126,6 @@ class MerchantInteractorImpl(private val apiService : APIService? = null) : Merc
             disposable?.dispose()
             disposable = null
         }
+        merchantRepository.onDestroy()
     }
 }

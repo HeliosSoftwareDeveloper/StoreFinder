@@ -23,7 +23,6 @@ class MainActivity : ViewNavigator(), MerchantListFragment.OnMerchantListFragmen
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        AppDatabase.getAppDataBase(this)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             ActivityCompat.requestPermissions(this, Constants.listUserRequiredPermission, Constants.REQUEST_CODE_USER_PERMISSION_ALL)
         }
@@ -42,5 +41,10 @@ class MainActivity : ViewNavigator(), MerchantListFragment.OnMerchantListFragmen
                 //show message for future development
             }
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        AppDatabase.destroyDataBase()
     }
 }

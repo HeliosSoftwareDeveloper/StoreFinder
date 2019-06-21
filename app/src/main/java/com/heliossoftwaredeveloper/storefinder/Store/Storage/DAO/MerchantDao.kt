@@ -1,3 +1,4 @@
+/* (c) Helios Software Developer. All rights reserved. */
 package com.heliossoftwaredeveloper.storefinder.Store.Storage.DAO
 
 import android.arch.persistence.room.Dao
@@ -14,13 +15,9 @@ import com.heliossoftwaredeveloper.storefinder.Store.Storage.Model.MerchantDBDat
 
 @Dao
 interface MerchantDao {
-
     @Query("SELECT * from MerchantDBData")
     fun getAll(): List<MerchantDBData>
 
     @Insert(onConflict = REPLACE)
     fun insert(merchantData: List<MerchantDBData>)
-
-    @Query("DELETE from MerchantDBData")
-    fun deleteAll()
 }

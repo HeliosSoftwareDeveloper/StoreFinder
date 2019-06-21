@@ -1,3 +1,4 @@
+/* (c) Helios Software Developer. All rights reserved. */
 package com.heliossoftwaredeveloper.storefinder.Store.Storage.DAO
 
 import android.arch.persistence.room.Dao
@@ -14,7 +15,6 @@ import com.heliossoftwaredeveloper.storefinder.Store.Storage.Model.MerchantBranc
 
 @Dao
 interface MerchantBranchDao {
-
     @Query("SELECT * from MerchantBranchDBData")
     fun getAll(): List<MerchantBranchDBData>
 

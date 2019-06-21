@@ -40,7 +40,7 @@ class MerchantListPresenterTest : BaseMerchantTest(){
     fun testValidGetMerchantList() {
         Mockito.`when`(apiService.getAllMerchant()).thenReturn(Observable.just(validGetMerchantMockResponse()))
 
-        val mockedMerchantListItems = MerchantInteractorImpl(apiService).groupMerchantByCategory(validGetMerchantMockResponse())
+        val mockedMerchantListItems = MerchantInteractorImpl(apiService).buildMerchantListItem(validGetMerchantMockResponse())
 
         presenter.getMerchantList()
         //verify if the updateLoaderVisibility-true has been called
