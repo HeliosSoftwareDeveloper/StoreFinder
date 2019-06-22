@@ -44,8 +44,6 @@ class MerchantListPresenterTest : BaseMerchantTest(){
 
     private lateinit var presenter: MerchantListPresenter
 
-    private val PREF_NAME = "HELIOS-MERCHANT-SHARED-PREF"
-
     @Before
     fun setup() {
         Mockito.`when`(context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)).thenReturn(sharePref)

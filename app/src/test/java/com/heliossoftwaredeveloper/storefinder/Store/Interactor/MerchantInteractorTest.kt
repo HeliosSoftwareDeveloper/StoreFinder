@@ -34,18 +34,12 @@ class MerchantInteractorTest : BaseMerchantTest(){
     @Rule @JvmField var testSchedulerRule = RxImmediateSchedulerRule()
 
     @Mock private lateinit var apiService : APIService
-
     @Mock private lateinit var merchantRepository: MerchantRepository
-
     @Mock private lateinit var context : Context
     @Mock private lateinit var sharePref : SharedPreferences
     @Mock private lateinit var editor: SharedPreferences.Editor
 
     private lateinit var interactor : MerchantInteractor
-
-    private val PREF_NAME = "HELIOS-MERCHANT-SHARED-PREF"
-
-    private lateinit var database : AppDatabase
 
     @Before
     fun setUp() {
@@ -55,16 +49,12 @@ class MerchantInteractorTest : BaseMerchantTest(){
 
         MerchantSharedPreferenceHelper.initialize(context)
         interactor = MerchantInteractorImpl(apiService, merchantRepository)
-
-        database = Room.inMemoryDatabaseBuilder(context, AppDatabase::class.java).allowMainThreadQueries().build()
     }
 
     @Test
     fun testValidGetMerchantList() {
         Mockito.`when`(apiService.getAllMerchant()).thenReturn(Observable.just(validGetMerchantMockResponse()))
         Mockito.`when`(merchantRepository.getMerchantList()).thenReturn(Observable.just(GetMerchantFromDBResponse(ArrayList(),ArrayList(),ArrayList())))
-
-
 
         interactor.getMerchantList(object : MerchantInteractor.GetMerchantListListener{
             override fun onGetMerchantListSuccess(listMerchantItems: List<MerchantListItem>) {//Check if the list size is correct

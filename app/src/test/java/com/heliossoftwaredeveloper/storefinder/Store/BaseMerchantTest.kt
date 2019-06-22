@@ -19,6 +19,7 @@ open class BaseMerchantTest {
     protected val EXPECTED_VALID_MERCHANT_LIST_ITEM_SIZE = 16
     protected val EXPECTED_EMPTY_MERCHANT_LIST_ITEM_SIZE = 0
     protected val EXPECTED_SERVICE_ERROR_MESSAGE = "An error occured. Please try again later."
+    protected val PREF_NAME = "HELIOS-MERCHANT-SHARED-PREF"
 
     /**
      * Base class method to get valid mock merchantList response
