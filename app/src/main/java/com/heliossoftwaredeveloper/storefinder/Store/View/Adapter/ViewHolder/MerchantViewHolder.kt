@@ -30,7 +30,7 @@ class MerchantViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
     fun bind(merchant: MerchantItem, merchantListAdapterListener : MerchantListAdapter.MerchantListAdapterListener) {
         txtMerchantName.text = merchant.merchantName
         txtMerchantDetails.text = merchant.merchantDetails
-        imgMechantIcon.setImageURI(Uri.parse(String.format(MerchantItem.IMAGE_PATH, merchant.merchantIcon)), null)
+        imgMechantIcon.setImageURI(Uri.parse(merchant.merchantIconFullPath), null)
 
         cardViewMerchant.setOnClickListener(View.OnClickListener {
             merchantListAdapterListener.onMerchantItemListClicked(merchant)

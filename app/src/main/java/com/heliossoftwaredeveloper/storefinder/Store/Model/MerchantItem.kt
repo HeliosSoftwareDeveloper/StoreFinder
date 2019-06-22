@@ -11,6 +11,8 @@ import java.io.Serializable
 
 data class MerchantItem(val merchantID : Int, val merchantName : String, val merchantCategory : Int, val merchantWebsite : String, val merchantIcon: String, val merchantDetails : String, val merchantBranches : List<Branches>) : Serializable {
 
+    val merchantIconFullPath: String get() = if (merchantIcon.isNullOrEmpty()) "" else String.format(IMAGE_PATH, merchantIcon)
+
     data class Branches(val branchId : Int, val merchantID : Int, val branchLatitude :Double, val branchLongitude :Double, val branchName : String, val branchAddress : String, val branchStoreHours : String, val branchPhoneNumber : String) : Serializable
 
     data class Category(val categoryId : Int, val categoryName : String) : Serializable

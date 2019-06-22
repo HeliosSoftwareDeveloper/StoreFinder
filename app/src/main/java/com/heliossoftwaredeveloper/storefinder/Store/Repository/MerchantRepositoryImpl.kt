@@ -39,9 +39,7 @@ class MerchantRepositoryImpl : MerchantRepository {
         Observable.zip(saveCategory, saveMerchant, saveBranch, Function3<String?, String?, String?, String> ({ t1, t2, t3 -> "" }))
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({
-                    MerchantSharedPreferenceHelper.saveLastDateSync()
-                })
+                .subscribe({ MerchantSharedPreferenceHelper.saveLastDateSync()})
     }
 
     override fun getMerchantList(getMerchantListListener: MerchantRepository.GetMerchantListListener) {
