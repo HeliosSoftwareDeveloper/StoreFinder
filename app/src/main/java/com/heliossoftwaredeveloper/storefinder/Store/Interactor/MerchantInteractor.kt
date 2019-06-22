@@ -15,6 +15,7 @@ interface MerchantInteractor {
      * */
     interface GetMerchantListListener {
         fun onGetMerchantListSuccess(listMerchantItems: List<MerchantListItem>)
+        fun onGetMerchantListFromCache(listMerchantItems: List<MerchantListItem>)
         fun onGetMerchantListError(message : String?)
     }
 

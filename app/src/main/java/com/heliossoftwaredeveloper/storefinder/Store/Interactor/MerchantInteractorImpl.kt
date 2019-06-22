@@ -37,18 +37,26 @@ class MerchantInteractorImpl(private val apiService : APIService? = null) : Merc
                             },
                             {  e ->
                                 getMerchantListListener.onGetMerchantListError(SERVICE_ERROR_MESSAGE)
-                                onDestroy()
+                                getMerchantListFromCache(getMerchantListListener)
                             }
                     )
         } else {
-            merchantRepository.getMerchantList(object : MerchantRepository.GetMerchantListListener {
-                override fun onGetMerchantListFinished(getMerchantFromDBResponse: GetMerchantFromDBResponse) {
-                    getMerchantListListener.onGetMerchantListSuccess(buildMerchantListItemFromDB(getMerchantFromDBResponse))
-                    onDestroy()
-                }
-            })
+            getMerchantListFromCache(getMerchantListListener)
         }
+    }
 
+    /**
+     * Method to execute transaction on repository to fetch merchant from cache database
+     *
+     * @param getMerchantListListener callback interface to presenter
+     **/
+    private fun getMerchantListFromCache(getMerchantListListener: MerchantInteractor.GetMerchantListListener) {
+            merchantRepository.getMerchantList(object : MerchantRepository.GetMerchantListListener {
+            override fun onGetMerchantListFinished(getMerchantFromDBResponse: GetMerchantFromDBResponse) {
+                getMerchantListListener.onGetMerchantListFromCache(buildMerchantListItemFromDB(getMerchantFromDBResponse))
+                onDestroy()
+            }
+        })
     }
 
     /**
@@ -73,6 +81,13 @@ class MerchantInteractorImpl(private val apiService : APIService? = null) : Merc
         return listMerchantItem
     }
 
+    /**
+     * Method to build List<MerchantListItem> from database cache response, arranged by group category
+     *
+     * @param getMerchantResponse database cache response
+     *
+     * @return List<MerchantItem> list view model of merchant
+     **/
     private fun buildMerchantListItemFromDB(getMerchantFromDBResponse: GetMerchantFromDBResponse) : List<MerchantListItem>{
         var listMerchantItem = ArrayList<MerchantListItem>()
 

@@ -23,7 +23,6 @@ class MerchantListPresenterImpl(merchantListView : MerchantListView, apiService 
         if (mMerchantListView == null) {
             return
         }
-
         mMerchantListView.updateLoaderVisibility(true)
 
         merchantInteractor.getMerchantList(object : MerchantInteractor.GetMerchantListListener{
@@ -38,6 +37,13 @@ class MerchantListPresenterImpl(merchantListView : MerchantListView, apiService 
                 if (mMerchantListView != null) {
                     mMerchantListView.updateLoaderVisibility(false)
                     mMerchantListView.showErrorMessage(message!!)
+                }
+            }
+
+            override fun onGetMerchantListFromCache(listMerchantItems: List<MerchantListItem>) {
+                if (mMerchantListView != null) {
+                    mMerchantListView.updateLoaderVisibility(false)
+                    mMerchantListView.onUpdateMerchantList(listMerchantItems)
                 }
             }
         })

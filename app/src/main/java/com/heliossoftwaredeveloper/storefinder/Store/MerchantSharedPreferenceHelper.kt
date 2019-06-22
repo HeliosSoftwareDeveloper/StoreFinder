@@ -5,7 +5,7 @@ import android.content.Context
 import android.content.SharedPreferences
 
 /**
- * Created by Ruel N. Grajo on 06/08/2019.
+ * Created by Ruel N. Grajo on 06/21/2019.
  *
  * Shared Preference class helper for merchant
  */
