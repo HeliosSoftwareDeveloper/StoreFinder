@@ -1,8 +1,10 @@
 # HeliosStoreFinder
-Sample Application to demonstrate MVP pattern with RxJava & Retrofit using Kotlin. It also has corresponding UNIT TEST for interactor, presenter and model. I used  mockito & junit for unit testing. I implemented travis ci, tool for continuous integration on this project. Below are the complete features of the application:
+Sample Application to demonstrate MVP pattern with RxJava, Retrofit, & Room (for data cache) using Kotlin. It also has corresponding UNIT TEST for interactor, presenter and model. I used  mockito & junit for unit testing. I implemented travis ci, tool for continuous integration on this project. Below are the complete features of the application:
 
 <ul>
   <li>Retrofit with RxJava -> used to handle network calls using observable</li>
+  <li>Room Library -> used to handle database transaction</li>
+  <li>SharedPreference -> used to hold last date sync value for data caching</li>
   <li>Fresco (Facebook library) -> used to download images</li>
   <li>Gson (Google Library) -> used to parse json response from the service</li>
   <li>ViewNavigator -> Base Activity Class to handle the navigation between</li>
