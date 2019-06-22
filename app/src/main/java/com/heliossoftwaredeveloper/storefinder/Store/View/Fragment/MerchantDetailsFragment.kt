@@ -15,11 +15,11 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import com.heliossoftwaredeveloper.storefinder.SharedComponents.DividerSpaceItemDecoration
+import com.heliossoftwaredeveloper.storefinder.SharedViewComponents.DividerSpaceItemDecoration
 
 import com.heliossoftwaredeveloper.storefinder.R
-import com.heliossoftwaredeveloper.storefinder.SharedComponents.Constants
-import com.heliossoftwaredeveloper.storefinder.Store.Model.Merchant
+import com.heliossoftwaredeveloper.storefinder.SharedViewComponents.Constants
+import com.heliossoftwaredeveloper.storefinder.Store.Model.MerchantItem
 import com.heliossoftwaredeveloper.storefinder.Store.Presenter.MerchantDetailsPresenter
 import com.heliossoftwaredeveloper.storefinder.Store.Presenter.MerchantDetailsPresenterImpl
 import com.heliossoftwaredeveloper.storefinder.Store.View.Adapter.MerchantBranchesAdapter
@@ -29,19 +29,19 @@ import kotlinx.android.synthetic.main.fragment_merchant_details.*
 /**
  * Created by Ruel N. Grajo on 06/06/2019.
  *
- * Fragment class that display Merchant complete details.
+ * Fragment class that display MerchantItem complete details.
  */
 
 class MerchantDetailsFragment : Fragment(), OnMapReadyCallback, MerchantBranchesAdapter.MerchantBranchesAdapterListener, MerchantDetailsView {
 
-    private var selectedMerchant: Merchant? = null
+    private var selectedMerchant: MerchantItem? = null
     private lateinit var mMap: GoogleMap
     private lateinit var merchantDetailsPresenter : MerchantDetailsPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (arguments != null) {
-            selectedMerchant = arguments.getSerializable(ARG_PARAM_MERCHANT) as Merchant
+            selectedMerchant = arguments.getSerializable(ARG_PARAM_MERCHANT) as MerchantItem
         }
         merchantDetailsPresenter = MerchantDetailsPresenterImpl(this)
     }
@@ -89,7 +89,7 @@ class MerchantDetailsFragment : Fragment(), OnMapReadyCallback, MerchantBranches
     companion object {
         private const val ARG_PARAM_MERCHANT = "argParamMerchant"
 
-        fun newInstance(merchant: Merchant): MerchantDetailsFragment {
+        fun newInstance(merchant: MerchantItem): MerchantDetailsFragment {
             val fragment = MerchantDetailsFragment()
             val args = Bundle()
             args.putSerializable(ARG_PARAM_MERCHANT, merchant)
@@ -98,7 +98,7 @@ class MerchantDetailsFragment : Fragment(), OnMapReadyCallback, MerchantBranches
         }
     }
 
-    override fun onMerchantBranchItemListClicked(merchantBranch: Merchant.Branches) {
+    override fun onMerchantBranchItemListClicked(merchantBranch: MerchantItem.Branches) {
         merchantDetailsPresenter.getMerchantBranchLocation(merchantBranch)
     }
 

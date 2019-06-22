@@ -4,11 +4,11 @@ package com.heliossoftwaredeveloper.storefinder
 import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
-import com.heliossoftwaredeveloper.storefinder.Store.Model.Merchant
+import com.heliossoftwaredeveloper.storefinder.Store.Model.MerchantItem
 import com.heliossoftwaredeveloper.storefinder.Store.View.Fragment.MerchantDetailsFragment
 import com.heliossoftwaredeveloper.storefinder.Store.View.Fragment.MerchantListFragment
-import com.heliossoftwaredeveloper.storefinder.SharedComponents.Constants
-import com.heliossoftwaredeveloper.storefinder.SharedComponents.ViewNavigator
+import com.heliossoftwaredeveloper.storefinder.SharedViewComponents.Constants
+import com.heliossoftwaredeveloper.storefinder.SharedViewComponents.ViewNavigator
 
 /**
  * Created by Ruel N. Grajo on 06/06/2019.
@@ -29,7 +29,7 @@ class MainActivity : ViewNavigator(), MerchantListFragment.OnMerchantListFragmen
         nagivateTo(MerchantListFragment(), false)
     }
 
-    override fun onMerchantClicked(merchant: Merchant) {
+    override fun onMerchantClicked(merchant: MerchantItem) {
         nagivateTo(MerchantDetailsFragment.newInstance(merchant), true)
     }
 

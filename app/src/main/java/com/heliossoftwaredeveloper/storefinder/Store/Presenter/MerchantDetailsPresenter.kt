@@ -1,7 +1,7 @@
 /* (c) Helios Software Developer. All rights reserved. */
 package com.heliossoftwaredeveloper.storefinder.Store.Presenter
 
-import com.heliossoftwaredeveloper.storefinder.Store.Model.Merchant
+import com.heliossoftwaredeveloper.storefinder.Store.Model.MerchantItem
 
 /**
  * Created by Ruel N. Grajo on 06/17/2019.
@@ -14,10 +14,10 @@ interface MerchantDetailsPresenter {
     /**
      * Interface method to get branches from selected merchants
      * */
-    fun getMerchantBranchMarkers(merchant: Merchant?)
+    fun getMerchantBranchMarkers(merchant: MerchantItem?)
 
     /**
      * Interface method to get branch location
      * */
-    fun getMerchantBranchLocation(merchantBranch: Merchant.Branches)
+    fun getMerchantBranchLocation(merchantBranch: MerchantItem.Branches)
 }

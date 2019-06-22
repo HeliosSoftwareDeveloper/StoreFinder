@@ -3,7 +3,7 @@ package com.heliossoftwaredeveloper.storefinder.Store.Presenter
 
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import com.heliossoftwaredeveloper.storefinder.Store.Model.Merchant
+import com.heliossoftwaredeveloper.storefinder.Store.Model.MerchantItem
 import com.heliossoftwaredeveloper.storefinder.Store.View.MerchantDetailsView
 
 /**
@@ -16,7 +16,7 @@ class MerchantDetailsPresenterImpl(merchantDetailsView : MerchantDetailsView)  :
 
     val mMerchantDetailsView = merchantDetailsView
 
-    override fun getMerchantBranchMarkers(merchant: Merchant?) {
+    override fun getMerchantBranchMarkers(merchant: MerchantItem?) {
         if (merchant == null) {
             return
         }
@@ -24,8 +24,7 @@ class MerchantDetailsPresenterImpl(merchantDetailsView : MerchantDetailsView)  :
         var merchantLocation : LatLng? = null //need to save the instance to move & zoom the map camera to the last branch of merchant.
 
         for (merchantBranches in merchant.merchantBranches) {
-            val brachLocation = merchantBranches.branchLocation
-            merchantLocation = LatLng(brachLocation.first(), brachLocation.get(brachLocation.lastIndex))
+            merchantLocation = LatLng(merchantBranches.branchLatitude, merchantBranches.branchLongitude)
 
             mMerchantDetailsView.onAddMapMarker(MarkerOptions().position(merchantLocation).title(merchant.merchantName))
         }
@@ -34,8 +33,7 @@ class MerchantDetailsPresenterImpl(merchantDetailsView : MerchantDetailsView)  :
         }
     }
 
-    override fun getMerchantBranchLocation(merchantBranch: Merchant.Branches) {
-        val brachLocation = merchantBranch.branchLocation
-        mMerchantDetailsView.onMoveMapLocationTo(LatLng(brachLocation.first(), brachLocation.get(brachLocation.lastIndex)))
+    override fun getMerchantBranchLocation(merchantBranch: MerchantItem.Branches) {
+        mMerchantDetailsView.onMoveMapLocationTo(LatLng(merchantBranch.branchLatitude, merchantBranch.branchLongitude))
     }
 }

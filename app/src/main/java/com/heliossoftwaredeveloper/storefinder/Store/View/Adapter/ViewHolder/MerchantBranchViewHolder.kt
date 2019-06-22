@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.heliossoftwaredeveloper.storefinder.R
-import com.heliossoftwaredeveloper.storefinder.Store.Model.Merchant
+import com.heliossoftwaredeveloper.storefinder.Store.Model.MerchantItem
 import com.heliossoftwaredeveloper.storefinder.Store.View.Adapter.MerchantBranchesAdapter
 
 /**
@@ -24,7 +24,7 @@ class MerchantBranchViewHolder(inflater: LayoutInflater, parent: ViewGroup) : Re
     private var txtMerchantBranchStoreHoursAndNumber : TextView = itemView.findViewById(R.id.txtMerchantBranchStoreHoursAndNumber)
     private var cardViewMerchantBranch : CardView = itemView.findViewById(R.id.cardViewMerchantBranch)
 
-    fun bind(merchantBranches: Merchant.Branches, merchantBranchesAdapterListener : MerchantBranchesAdapter.MerchantBranchesAdapterListener) {
+    fun bind(merchantBranches: MerchantItem.Branches, merchantBranchesAdapterListener : MerchantBranchesAdapter.MerchantBranchesAdapterListener) {
         txtMerchantBranchName.text = merchantBranches.branchName
         txtMerchantBranchAddress.text = merchantBranches.branchAddress
         txtMerchantBranchStoreHoursAndNumber.text = "${merchantBranches.branchStoreHours} - ${merchantBranches.branchPhoneNumber}"

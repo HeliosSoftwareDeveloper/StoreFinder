@@ -1,46 +1,8 @@
 {
-  "merchantID": 1,
-  "merchantBranches": [
-    {
-      "branchName":"SM Aura Premier",
-      "branchAddress" : "L/GF SM Aura Premier, 26th St. cor. McKinley Parkway,, Brgy. Fort Bonifacio, Global City, Taguig, 1634 Metro Manila",
-      "branchLocation": [
-        14.546748,121.0545499
-      ],
-      "branchStoreHours": "10am–10pm",
-      "branchPhoneNumber": "(02) 808 8276"
-    },
-    {
-      "branchName":"Market! Market!",
-      "branchAddress" : "3/F MARKET MARKET, Bonifacio Global City, Taguig, Taguig, 1634 Metro Manila",
-      "branchLocation": [
-        14.5491314,121.0558947
-      ],
-      "branchStoreHours": "10am–9pm",
-      "branchPhoneNumber": "(02) 886 6761"
-    },
-    {
-      "branchName":"SM Makati",
-      "branchAddress" : "SM Makati, 3rd, Courtyard Dr, Village, Makati, 1223 Metro Manila",
-      "branchLocation": [
-        14.5497324,121.02677
-      ],
-      "branchStoreHours": "10am–9pm",
-      "branchPhoneNumber": "(02) 892 5905"
-    },
-    {
-      "branchName":"Greenbelt 1",
-      "branchAddress" : "G/F Greenbelt I Square, Ayala Commercial Center,, Paseo de Roxas cor. Legaspi St. Salcedo Village, Makati, 1227 Metro Manila",
-      "branchLocation": [
-        14.5530525,121.020071
-      ],
-      "branchStoreHours": "10am–8pm",
-      "branchPhoneNumber": "(02) 815 9465"
-    }
-  ],
-  "merchantName": "ACE Hardware",
-  "merchantCategory":1,
-  "merchantWebsite":"https://www.acehardware.ph/",
-  "merchantIcon": "/images/ace_hardware_icon.png",
-  "merchantDetails": "Ace Hardware Corporation is an American hardware retailers' cooperative based in Oak Brook, Illinois, United States. It is the world's largest hardware retail cooperative, and the largest non-grocery American retail cooperative."
+  "merchantId": 10,
+  "merchantName": "Metro Supermarket",
+  "categoryId":3,
+  "merchantWebsite":"http://themetrostores.ph/",
+  "merchantIcon": "/images/metro_store_icon.jpg",
+  "merchantDetails": "Victor Gaisano and his wife, Sally, founded the Metro Retail Stores Group in 1982 with the establishment of the Metro Gaisano Department Store and Supermarket. The group expanded to major cities outside Cebu by opening stores in key cities in Central, Western and Eastern Visayas, as well as in Central Luzon, Metro Manila and South Luzon."
 }

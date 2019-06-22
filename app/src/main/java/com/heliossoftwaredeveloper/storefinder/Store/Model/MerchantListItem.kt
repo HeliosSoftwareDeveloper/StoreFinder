@@ -8,7 +8,7 @@ import java.io.Serializable
  *
  * Data class holder for merchant list items
  */
-data class MerchantListItem(val merchant: Merchant?, val category: MerchantCategory?, val merchantListItemType : MerchantListItemType) : Serializable {
+data class MerchantListItem(val merchant: MerchantItem?, val category: MerchantItem.Category?, val merchantListItemType : MerchantListItemType) : Serializable {
     enum class MerchantListItemType{
         ITEM_HEADER, ITEM_CHILD
     }
