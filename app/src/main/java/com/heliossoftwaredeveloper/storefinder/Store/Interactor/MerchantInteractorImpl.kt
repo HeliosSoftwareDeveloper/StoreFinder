@@ -18,11 +18,11 @@ import io.reactivex.schedulers.Schedulers
  *
  * Interactor class to handle transactions related to merchant
  */
-class MerchantInteractorImpl(private val apiService : APIService? = null) : MerchantInteractor {
+class MerchantInteractorImpl(private val apiService : APIService? = null, private val merchantRepository : MerchantRepository =
+        MerchantRepositoryImpl()) : MerchantInteractor {
 
     private var disposable: Disposable? = null
     private val SERVICE_ERROR_MESSAGE = "An error occured. Please try again later."
-    private val merchantRepository : MerchantRepository = MerchantRepositoryImpl()
 
     override fun getMerchantList(getMerchantListListener: MerchantInteractor.GetMerchantListListener) {
         if (MerchantSharedPreferenceHelper.isSyncRequired()) {
@@ -51,12 +51,11 @@ class MerchantInteractorImpl(private val apiService : APIService? = null) : Merc
      * @param getMerchantListListener callback interface to presenter
      **/
     private fun getMerchantListFromCache(getMerchantListListener: MerchantInteractor.GetMerchantListListener) {
-            merchantRepository.getMerchantList(object : MerchantRepository.GetMerchantListListener {
-            override fun onGetMerchantListFinished(getMerchantFromDBResponse: GetMerchantFromDBResponse) {
-                getMerchantListListener.onGetMerchantListFromCache(buildMerchantListItemFromDB(getMerchantFromDBResponse))
-                onDestroy()
-            }
+        merchantRepository.getMerchantList().subscribe({ result ->
+            getMerchantListListener.onGetMerchantListFromCache(buildMerchantListItemFromDB(result))
+            onDestroy()
         })
+
     }
 
     /**

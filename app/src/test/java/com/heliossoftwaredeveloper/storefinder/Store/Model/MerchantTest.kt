@@ -1,8 +1,10 @@
 /* (c) Helios Software Developer. All rights reserved. */
 package com.heliossoftwaredeveloper.storefinder.Store.Model
 
+import com.heliossoftwaredeveloper.storefinder.API.Model.GetMerchantResponse
 import com.heliossoftwaredeveloper.storefinder.Store.BaseMerchantTest
 import com.heliossoftwaredeveloper.storefinder.Store.Interactor.MerchantInteractorImpl
+import com.heliossoftwaredeveloper.storefinder.Store.MerchantObjectMapper
 import org.junit.Assert
 import org.junit.Test
 
@@ -16,7 +18,7 @@ class MerchantTest : BaseMerchantTest(){
 
     @Test
     fun testValidGetMerchantList() {
-        val mockedMerchantListItems = MerchantInteractorImpl().buildMerchantListItem(validGetMerchantMockResponse())
+        val mockedMerchantListItems = buildMerchantListItem(validGetMerchantMockResponse())
 
         //Check the content of MerchantListItems
         Assert.assertNotNull(mockedMerchantListItems)
@@ -26,7 +28,8 @@ class MerchantTest : BaseMerchantTest(){
         val firstMerchantOnList : MerchantItem = mockedMerchantListItems[1].merchant!!
         val firstMerchantBranches : List<MerchantItem.Branches> = mockedMerchantListItems[1].merchant!!.merchantBranches
         val firstMerchantBranch : MerchantItem.Branches = firstMerchantBranches[0]
-        val firstMerchantBranchLatLng : List<Double> = firstMerchantBranch.branchLocation
+        val firstMerchantBranchLatitude : Double = firstMerchantBranch.branchLatitude
+        val firstMerchantBranchLongitude : Double = firstMerchantBranch.branchLongitude
 
         //Check the content of the MerchantItem Model
         Assert.assertEquals(1, firstMerchantOnList.merchantID)
@@ -44,8 +47,7 @@ class MerchantTest : BaseMerchantTest(){
         Assert.assertEquals("(02) 808 8276", firstMerchantBranch.branchPhoneNumber)
 
         //Check the Latitude and longitude value of MerchantItem Branch
-        Assert.assertEquals(2, firstMerchantBranchLatLng.size)
-        Assert.assertEquals(14.546748, firstMerchantBranchLatLng[0], 0.toDouble())
-        Assert.assertEquals(121.0545499, firstMerchantBranchLatLng[1], 0.toDouble())
+        Assert.assertEquals(14.546748, firstMerchantBranchLatitude, 0.toDouble())
+        Assert.assertEquals(121.0545499, firstMerchantBranchLongitude, 0.toDouble())
     }
 }

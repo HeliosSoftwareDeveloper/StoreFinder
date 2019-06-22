@@ -17,7 +17,7 @@ object MerchantSharedPreferenceHelper {
 
     private const val TIME_INTERVAL_TO_SYNC = 4 * 3600 * 1000 //4 Hours
 
-    lateinit var sharedPref: SharedPreferences
+    private lateinit var sharedPref: SharedPreferences
 
     fun initialize(context: Context){
         sharedPref = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
@@ -33,6 +33,6 @@ object MerchantSharedPreferenceHelper {
     }
 
     fun saveLastDateSync() {
-        sharedPref.edit().putLong(KEY_LAST_DATE_SYNC, System.currentTimeMillis()).commit()
+       sharedPref.edit().putLong(KEY_LAST_DATE_SYNC, System.currentTimeMillis()).commit()
     }
 }

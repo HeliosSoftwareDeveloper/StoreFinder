@@ -21,6 +21,7 @@ import android.support.v7.widget.SearchView
 import com.heliossoftwaredeveloper.storefinder.API.RetrofitClientInstance
 import com.heliossoftwaredeveloper.storefinder.SharedViewComponents.DividerSpaceItemDecoration
 import com.heliossoftwaredeveloper.storefinder.Store.Model.MerchantListItem
+import com.heliossoftwaredeveloper.storefinder.Store.Repository.MerchantRepositoryImpl
 import com.heliossoftwaredeveloper.storefinder.Store.View.MerchantListView
 
 /**
@@ -45,7 +46,7 @@ class MerchantListFragment : Fragment(), MerchantListView, MerchantListAdapter.M
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view =  inflater.inflate(R.layout.fragment_merchant_list, container, false)
         val apiService by lazy { RetrofitClientInstance.create() }
-        merchantPresenter = MerchantListPresenterImpl(this, apiService)
+        merchantPresenter = MerchantListPresenterImpl(this, apiService, MerchantRepositoryImpl())
         return view
     }
 

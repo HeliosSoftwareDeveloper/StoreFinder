@@ -3,6 +3,7 @@ package com.heliossoftwaredeveloper.storefinder.Store.Repository
 
 import com.heliossoftwaredeveloper.storefinder.API.Model.GetMerchantResponse
 import com.heliossoftwaredeveloper.storefinder.Store.Storage.Model.GetMerchantFromDBResponse
+import io.reactivex.Observable
 
 /**
  * Created by Ruel N. Grajo on 06/20/2019.
@@ -10,10 +11,6 @@ import com.heliossoftwaredeveloper.storefinder.Store.Storage.Model.GetMerchantFr
  * Repository class to execute database transactions related to merchant
  */
 interface MerchantRepository {
-
-    interface GetMerchantListListener {
-        fun onGetMerchantListFinished(getMerchantFromDBResponse: GetMerchantFromDBResponse)
-    }
 
     /**
      * Interface method to save api response of getMerchantList Request
@@ -25,9 +22,9 @@ interface MerchantRepository {
     /**
      * Interface method to save api response of getMerchantList Request
      *
-     * @param getMerchantResponse callback/listener
+     * @return Observable<GetMerchantFromDBResponse> merchant data from database cache
      * */
-    fun getMerchantList(getMerchantListListener : GetMerchantListListener)
+    fun getMerchantList() : Observable<GetMerchantFromDBResponse>
 
     /**
      * Interface method to cancel any ongoing request onViewDestroy
