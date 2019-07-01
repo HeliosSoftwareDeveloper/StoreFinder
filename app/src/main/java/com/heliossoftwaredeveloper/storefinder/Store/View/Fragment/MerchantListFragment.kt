@@ -20,6 +20,7 @@ import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.SearchView
 import com.heliossoftwaredeveloper.storefinder.API.RetrofitClientInstance
 import com.heliossoftwaredeveloper.storefinder.SharedViewComponents.DividerSpaceItemDecoration
+import com.heliossoftwaredeveloper.storefinder.SharedViewComponents.SearchViewWatcher
 import com.heliossoftwaredeveloper.storefinder.Store.Model.MerchantListItem
 import com.heliossoftwaredeveloper.storefinder.Store.Repository.MerchantRepositoryImpl
 import com.heliossoftwaredeveloper.storefinder.Store.View.MerchantListView
@@ -65,15 +66,12 @@ class MerchantListFragment : Fragment(), MerchantListView, MerchantListAdapter.M
 
         etSearchBox.queryHint = resources.getString(R.string.label_search_merchant)
         etSearchBox.setIconifiedByDefault(false)
-        etSearchBox.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                return false
-            }
-            override fun onQueryTextChange(newText: String?): Boolean {
+
+        SearchViewWatcher().setListener(object : SearchViewWatcher.SearchViewWatcherListener{
+            override fun onQueryChanged(newText: String?) {
                 merchantListAdapter.filter.filter(newText)
-                return true
             }
-        })
+        }).registerSearchView(etSearchBox)
 
         merchantPresenter.getMerchantList()
     }
